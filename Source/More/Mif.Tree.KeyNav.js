@@ -17,12 +17,12 @@ Mif.Tree.KeyNav=new Class({
 	},
 	
 	attach: function(){
-		var event = Browser.Engine.trident || Browser.Engine.webkit ? 'keydown' : 'keypress';
+		var event = Browser.ie || (Browser.safari || Browser.chrome) ? 'keydown' : 'keypress';
 		document.addEvent(event, this.bound.action);
 	},
 	
 	detach: function(){
-		var event = Browser.Engine.trident || Browser.Engine.webkit ? 'keydown' : 'keypress';
+		var event = Browser.ie || (Browser.safari || Browser.chrome) ? 'keydown' : 'keypress';
 		document.removeEvent(event, this.bound.action);
 	},
 	

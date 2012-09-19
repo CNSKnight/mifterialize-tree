@@ -52,7 +52,7 @@ Mif.Tree.Drag = new Class({
 		this.element = [this.current, this.target, this.where];
 		this.document = tree.wrapper.getDocument();
 		
-		this.selection = (Browser.Engine.trident) ? 'selectstart' : 'mousedown';
+		this.selection = (Browser.ie) ? 'selectstart' : 'mousedown';
 		
 		this.bound = {
 			start: this.start.bind(this),
