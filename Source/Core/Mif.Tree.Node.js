@@ -6,38 +6,38 @@ Mif.Tree.Node = new Class({
 	Implements: [Events],
 	
 	initialize: function(structure, options) {
-		$extend(this, structure);
-		this.children=[];
-		this.type=options.type||this.tree.dfltType;
-		this.property=options.property||{};
-		this.data=options.data;
-		this.state=$extend($unlink(this.tree.dfltState), options.state);
+		Object.append(this, structure);
+		this.children = [];
+		this.type = options.type || this.tree.dfltType;
+		this.property = options.property || {};
+		this.data = options.data;
+		this.state = Object.append(Object.clone(this.tree.dfltState), options.state);
 		this.$calculate();
-		this.UID=Mif.Tree.Node.UID++;
-		Mif.Tree.Nodes[this.UID]=this;
-		var id=this.id;
-		if(id!=null) Mif.ids[id]=this;
+		this.UID = Mif.Tree.Node.UID++;
+		Mif.Tree.Nodes[this.UID] = this;
+		var id = this.id;
+		if(id != null) Mif.ids[id] = this;
 		this.tree.fireEvent('nodeCreate', [this]);
-		this._property=['id', 'name', 'cls', 'openIcon', 'closeIcon', 'openIconUrl', 'closeIconUrl', 'hidden'];
+		this._property = ['id', 'name', 'cls', 'openIcon', 'closeIcon', 'openIconUrl', 'closeIconUrl', 'hidden'];
 	},
 	
 	$calculate: function(){
-		$extend(this, $unlink(this.tree.defaults));
-		this.type=$splat(this.type);
+		Object.append(this, Object.clone(this.tree.defaults));
+		this.type = Array.from(this.type);
 		this.type.each(function(type){
-			var props=this.tree.types[type];
-			if(props) $extend(this, props);
+			var props = this.tree.types[type];
+			if(props) Object.append(this, props);
 		}, this);
-		$extend(this, this.property);
+		Object.append(this, this.property);
 		return this;
 	},
 	
 	getDOM: function(what){
-		var node=$(this.tree.DOMidPrefix+this.UID);
-		if(what=='node') return node;
-		var wrapper=node.getFirst();
-		if(what=='wrapper') return wrapper;
-		if(what=='children') return wrapper.getNext();
+		var node = $(this.tree.DOMidPrefix+this.UID);
+		if(what == 'node') return node;
+		var wrapper = node.getFirst();
+		if(what == 'wrapper') return wrapper;
+		if(what == 'children') return wrapper.getNext();
 		return wrapper.getElement('.mif-tree-'+what);
 	},
 	
@@ -46,14 +46,14 @@ Mif.Tree.Node = new Class({
 	},
 	
 	toggle: function(state) {
-		if(this.state.open==state || this.$loading || this.$toggling) return this;
-		var parent=this.getParent();
+		if(this.state.open == state || this.$loading || this.$toggling) return this;
+		var parent = this.getParent();
 		function toggle(type){
 			this.state.open = !this.state.open;
-			if(type=='drawed'){
+			if(type == 'drawed'){
 				this.drawToggle();
 			}else{
-				parent._toggle=(parent._toggle||[])[this.state.open ? 'include' : 'erase'](this)
+				parent._toggle = (parent._toggle||[])[this.state.open ? 'include' : 'erase'](this);
 			}
 			this.fireEvent('toggle', [this.state.open]);
 			this.tree.fireEvent('toggle', [this, this.state.open]);
@@ -64,7 +64,7 @@ Mif.Tree.Node = new Class({
 		}
 		if(this.loadable && !this.state.loaded) {
             if(!this.load_event){
-                this.load_event=true;
+                this.load_event = true;
                 this.addEvent('load',function(){
                     this.toggle();
                 }.bind(this));
@@ -81,10 +81,10 @@ Mif.Tree.Node = new Class({
 	},
 	
 	recursive: function(fn, args){
-		args=$splat(args);
-		if(fn.apply(this, args)!==false){
+		args=Array.from(args);
+		if(fn.apply(this, args) !== false){
 			this.children.each(function(node){
-				if(node.recursive(fn, args)===false){
+				if(node.recursive(fn, args) === false){
 					return false;
 				}
 			});
@@ -101,17 +101,17 @@ Mif.Tree.Node = new Class({
 	},
 	
 	isLast: function(){
-		if(this.parentNode==null || this.parentNode.children.getLast()==this) return true;
+		if(this.parentNode == null || this.parentNode.children.getLast() == this) return true;
 		return false;
 	},
 	
 	isFirst: function(){
-		if(this.parentNode==null || this.parentNode.children[0]==this) return true;
+		if(this.parentNode == null || this.parentNode.children[0] == this) return true;
 		return false;
 	},
 	
 	isRoot: function(){
-		return this.parentNode==null ? true : false;
+		return this.parentNode == null ? true : false;
 	},
 	
 	getChildren: function(){
@@ -160,24 +160,25 @@ Mif.Tree.Node = new Class({
 			if(current.isOpen() && current.getFirst(true)){
 				return current.getFirst(true);
 			}else{
-				var parent=current;
+				var parent = current;
 				do{
-					current=parent.getNext(true);
+					current = parent.getNext(true);
 					if(current) return current;
-				}while( parent=parent.parentNode );
+					parent = parent.parentNode;
+				}while(parent);
 				return false;
 			}
 		}
 	},
 	
 	getPreviousVisible: function(){
-		var index=this.tree.$index.indexOf(this);
-		return index==0 ? null : this.tree.$index[index-1];
+		var index = this.tree.$index.indexOf(this);
+		return index == 0 ? null : this.tree.$index[index-1];
 	},
 	
 	getNextVisible: function(){
-		var index=this.tree.$index.indexOf(this);
-		return index<this.tree.$index.length-1 ? this.tree.$index[index+1] : null;
+		var index = this.tree.$index.indexOf(this);
+		return index < this.tree.$index.length-1 ? this.tree.$index[index+1] : null;
 	},
 	
 	getVisiblePosition: function(){
@@ -187,33 +188,33 @@ Mif.Tree.Node = new Class({
 	hasVisibleChildren: function(){
 		if(!this.hasChildren()) return false;
 		if(this.isOpen()){
-			var next=this.getNextVisible();
+			var next = this.getNextVisible();
 			if(!next) return false;
-			if(next.parentNode!=this) return false;
+			if(next.parentNode != this) return false;
 			return true;
 		}else{
-			var child=this.getFirst();
+			var child = this.getFirst();
 			while(child){
 				if(!child.hidden) return true;
-				child=child.getNext();
+				child = child.getNext();
 			}
 			return false;
 		}
 	},
 	
 	isLastVisible: function(){
-		var next=this.getNext();
+		var next = this.getNext();
 		while(next){
 			if(!next.hidden) return false;
-			next=next.getNext();
+			next = next.getNext();
 		};
 		return true;
 	},
 		
 	contains: function(node){
 		while(node){
-			if(node==this) return true;
-			node=node.parentNode;
+			if(node == this) return true;
+			node = node.parentNode;
 		};
 		return false;
 	},
@@ -234,11 +235,11 @@ Mif.Tree.Node = new Class({
 		switch(action){
 			case 'add': this.type.include(type); break;
 			case 'remove': this.type.erase(type); break;
-			case 'set': this.type=type; break;
+			case 'set': this.type = type; break;
 		}
-		var current={};
+		var current = {};
 		this._property.each(function(p){
-			current[p]=this[p];
+			current[p] = this[p];
 		}, this);
 		this.$calculate();
 		this._property.each(function(p){
@@ -249,20 +250,20 @@ Mif.Tree.Node = new Class({
 	
 	set: function(obj){
 		this.tree.fireEvent('beforeSet', [this, obj]);
-		var property=obj.property||obj||{};
+		var property = obj.property||obj||{};
 		for(var p in property){
-			var nv=property[p];
-			var cv=this[p];
+			var nv = property[p];
+			var cv = this[p];
 			this.updateProperty(p, cv, nv);
-			this[p]=this.property[p]=nv;
+			this[p] = this.property[p] = nv;
 		}
 		this.tree.fireEvent('set', [this, obj]);
 		return this;
 	},
 	
 	updateProperty: function(p, cv, nv){
-		if(nv==cv) return this;
-		if(p=='id'){
+		if(nv == cv) return this;
+		if(p == 'id'){
 			delete Mif.ids[cv];
 			if(nv) Mif.ids[nv]=this;
 			return this;
@@ -281,34 +282,35 @@ Mif.Tree.Node = new Class({
 				return this;
 			case 'openIconUrl':
 			case 'closeIconUrl':
-				var icon=this.getDOM('icon');
+				var icon = this.getDOM('icon');
 				icon.setStyle('background-image', 'none');
 				if(nv) icon.setStyle('background-image', 'url('+nv+')');
 				return this;
 			case 'hidden':
 				this.getDOM('node').setStyle('display', nv ? 'none' : 'block');
-				var _previous=this.getPreviousVisible();
-				var _next=this.getNextVisible();
-				var parent=this.getParent();
-				this[p]=this.property[p]=nv;
+				var _previous = this.getPreviousVisible();
+				var _next = this.getNextVisible();
+				var parent = this.getParent();
+				this[p] = this.property[p]=nv;
 				this.tree.$getIndex();
-				var previous=this.getPreviousVisible();
-				var next=this.getNextVisible();
-				[_previous, _next, previous, next, parent].each(function(node){
+				var previous = this.getPreviousVisible();
+				var next = this.getNextVisible();
+				[_previous, _next, previous, next, parent, this].each(function(node){
 					Mif.Tree.Draw.update(node);
 				});
 				return this;
 		}
+		return this;
 	},
 	
 	updateOpenState: function(){
 		if(this.state.open){
-			this.state.open=false;
+			this.state.open = false;
 			this.toggle();
 		}
 	}
 	
 });
 
-Mif.Tree.Node.UID=0;
-Mif.Tree.Nodes={};
+Mif.Tree.Node.UID = 0;
+Mif.Tree.Nodes = {};

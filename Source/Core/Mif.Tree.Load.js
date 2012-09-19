@@ -1,26 +1,32 @@
 /*
 Mif.Tree.Load
 */
-Mif.Tree.Load={
+Mif.Tree.Load = {
 		
 	children: function(children, parent, tree){
-		for( var i=children.length; i--; ){
-			var child=children[i];
-			var subChildren=child.children;
-			var node=new Mif.Tree.Node({
+	    var i, l;
+	    var subChildrens = [];
+		for(i = children.length; i--; ){
+			var child = children[i];
+			var node = new Mif.Tree.Node({
 				tree: tree,
 				parentNode: parent||undefined
 			}, child);
 			if( tree.forest || parent != undefined){
 				parent.children.unshift(node);
 			}else{
-				tree.root=node;
+				tree.root = node;
 			}
+			var subChildren = child.children;
 			if(subChildren && subChildren.length){
-				arguments.callee(subChildren, node, tree);
+			    subChildrens.push({children: subChildren, parent: node});
 			}
 		}
-		if(parent) parent.state.loaded=true;
+		for(i = 0, l = subChildrens.length; i < l; i++) {
+		    var sub = subChildrens[i];
+		    arguments.callee(sub.children, sub.parent, tree);
+		}
+		if(parent) parent.state.loaded = true;
 		tree.fireEvent('loadChildren', parent);
 	}
 	
@@ -29,17 +35,16 @@ Mif.Tree.Load={
 Mif.Tree.implement({
 
 	load: function(options){
-		var tree=this;
-		this.loadOptions=this.loadOptions||$lambda({});
+		var tree = this;
+		this.loadOptions = this.loadOptions||Function.from({});
 		function success(json){
+			var parent = null;
 			if(tree.forest){
-				tree.root=new Mif.Tree.Node({
+				tree.root = new Mif.Tree.Node({
 					tree: tree,
 					parentNode: null
 				}, {});
-				var parent=tree.root;
-			}else{
-				var parent=null;
+				parent = tree.root;
 			}
 			Mif.Tree.Load.children(json, parent, tree);
 			Mif.Tree.Draw[tree.forest ? 'forestRoot' : 'root'](tree);
@@ -47,8 +52,8 @@ Mif.Tree.implement({
 			tree.fireEvent('load');
 			return tree;
 		}
-		options=$extend($extend({
-			isSuccess: $lambda(true),
+		options = Object.append(Object.append({
+			isSuccess: Function.from(true),
 			secure: true,
 			onSuccess: success,
 			method: 'get'
@@ -63,22 +68,22 @@ Mif.Tree.implement({
 Mif.Tree.Node.implement({
 	
 	load: function(options){
-		this.$loading=true;
-		options=options||{};
+		this.$loading = true;
+		options = options||{};
 		this.addType('loader');
-		var self=this;
+		var self = this;
 		function success(json){
 			Mif.Tree.Load.children(json, self, self.tree);
 			delete self.$loading;
-			self.state.loaded=true;
+			self.state.loaded = true;
 			self.removeType('loader');
 			Mif.Tree.Draw.update(self);
 			self.fireEvent('load');
 			self.tree.fireEvent('loadNode', self);
 			return self;
 		}
-		options=$extend($extend($extend({
-			isSuccess: $lambda(true),
+		options=Object.append(Object.append(Object.append({
+			isSuccess: Function.from(true),
 			secure: true,
 			onSuccess: success,
 			method: 'get'
