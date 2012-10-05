@@ -26,8 +26,8 @@
         }
     ],
     "require": {
-        "stepcart/mootools-core": ">=1.4.5",
-        "stepcart/mootools-more": ">=1.4.*"
+        "stepcart/mootools-core": "*",
+        "stepcart/mootools-more": "*"
     },              
     "target-dir": "Resources/public/js"
 }
