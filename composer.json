@@ -1,0 +1,33 @@
+{
+    "name": "stepcart/mif-tree-library",
+    "type": "library",
+    "description": "javascript tree for web applications",
+    "keywords": ["tree", "mootools", "javascript", "library"],
+    "homepage": "https://stepcart.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anton Samoylov",
+            "email": "contributor@stepcart.com",
+            "homepage": "http://mifjs.net",
+            "role": "Developer"
+        },
+        {
+            "name": "StepCart Development Team",
+            "email": "contributor@stepcart.com",
+            "homepage": "http://stepcart.com",
+            "role": "Contributor"
+        },
+        {
+            "name": "Aleksandr Beshkenadze",
+            "email": "beshkenadze@gmail.com",
+            "homepage": "http://beshkenadze.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "stepcart/mootools-core": ">=1.4.5",
+        "stepcart/mootools-more": ">=1.4.*"
+    },              
+    "target-dir": "Resources/public/js"
+}
