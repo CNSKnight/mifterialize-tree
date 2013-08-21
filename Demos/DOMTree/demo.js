@@ -43,8 +43,8 @@ DOMTree = new Mif.Tree({
 DOMTree.loadOptions=function(node){
 	var json=[];
 	var dom=node.data.dom;
-	$try(function(){
-		var type=$type(dom);
+	(function(){
+		var type= typeof dom;
 		switch(type){
 			case 'string':
 			case 'number':
@@ -71,7 +71,7 @@ DOMTree.loadOptions=function(node){
 			break;
 			default:
 			for(var p in dom){
-				$try(function(){
+				(function(){
 					var child={
 						property:{
 							name: p
@@ -82,9 +82,9 @@ DOMTree.loadOptions=function(node){
 					}
 					if(typeof dom=='function') child.property.cls='dom-function';
 					json.push(child);
-				});
+				})();
 			}
 		}
-	});
+	})();
 	return {json: json};
 }
