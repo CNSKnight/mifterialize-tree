@@ -154,7 +154,7 @@ DOMTree.loadOptions=function(node){
 	var el=node.data.el;
 	el.getChildren().each(function(child){
 		var attrs='';
-		$A(child.attributes).each(function(attr){
+		Array.from(child.attributes).each(function(attr){
 			attrs+=" "+attr.nodeName+'="<span class="attr-value">'+attr.nodeValue+'</span>"';
 		});
 		var hasChildren=child.getChildren().length>0;
@@ -187,6 +187,6 @@ DOMTree.loadOptions=function(node){
 	return {json: json};
 }
 
-if(Browser.Engine.trident){
+if(Browser.ie){
 	(new Element('div', {styles:{color: 'red', fontSize: '20px', paddingLeft: '20px'}}).set('html', 'LOL IE')).injectBefore($('tree_container'));
 }
