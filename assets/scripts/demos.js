@@ -79,7 +79,7 @@ var Demos = {
 	},
 	
 	getList: function() {
-		var request = new Request.JSON({url: 'demos.json', onComplete: Demos.categories}).GET();
+		var request = new Request.JSON({url: 'demos.json', onComplete: Demos.categories}).get();
 	},
 
 	local: function() {
@@ -95,11 +95,11 @@ var Demos = {
 	
 	setInformer: function(folder){
 		
-		var info=new Element('div', {'class': 'info'}).injectTop($('demos-wrapper'));
+		var info=new Element('div', {'class': 'info'}).inject($('demos-wrapper'), 'top');
 		
 		var informer={};
 		['html', 'js', 'css'].each( function(type){
-			informer[type]=new Element('pre', {'class': 'informer '+type,styles:{display:'none'}}).injectAfter(info);
+			informer[type]=new Element('pre', {'class': 'informer '+type,styles:{display:'none'}}).inject(info, 'after');
 		});
 		
 		new Request({
@@ -142,7 +142,7 @@ var Demos = {
 					}
 					
 				};
-			}).injectInside(info);
+			}).inject(info);
 		});
 	}
 };
