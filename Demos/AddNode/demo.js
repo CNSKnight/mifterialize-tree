@@ -1,6 +1,6 @@
 window.addEvent('domready',function(){
 	SimpleTree = new Mif.Tree({
-		container: $('tree_container'),
+		container: $('tree-container'),
 		onNodeCreate: function(node){
 			node.set({id: node.name});
 		},

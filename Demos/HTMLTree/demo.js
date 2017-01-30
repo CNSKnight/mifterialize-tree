@@ -98,7 +98,7 @@ Mif.Tree.KeyNav.implement({
 
 
 DOMTree = new Mif.Tree({
-	container: $('tree_container'),
+	container: $('tree-container'),
 	forest: true,
 	types: {
 		open:{
@@ -188,5 +188,5 @@ DOMTree.loadOptions=function(node){
 }
 
 if(Browser.ie){
-	(new Element('div', {styles:{color: 'red', fontSize: '20px', paddingLeft: '20px'}}).set('html', 'LOL IE')).injectBefore($('tree_container'));
+	(new Element('div', {styles:{color: 'red', fontSize: '20px', paddingLeft: '20px'}}).set('html', 'LOL IE')).injectBefore($('tree-container'));
 }

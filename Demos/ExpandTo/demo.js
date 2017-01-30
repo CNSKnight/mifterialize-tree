@@ -3,7 +3,7 @@ window.addEvent('domready',function(){
 		initialize: function(){
 			new Mif.Tree.KeyNav(this);
 		},
-		container: $('tree_container'),// tree container
+		container: $('tree-container'),// tree container
 		forest: true,
 		types: {// node types
 			folder:{

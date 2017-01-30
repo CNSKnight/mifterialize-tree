@@ -1,6 +1,6 @@
 window.addEvent('domready',function(){
 	tree = new Mif.Tree({
-		container: $('tree_container'),
+		container: $('tree-container'),
 		forest: true,
 		initialize: function(){
 			new Mif.Tree.KeyNav(this);
@@ -80,7 +80,7 @@ window.addEvent('domready',function(){
 	}
 	
 	tree2 = new Mif.Tree({
-		container: $('tree_container2'),
+		container: $('tree-container2'),
 		initialize: function(){
 			new Mif.Tree.KeyNav(this);
 			new Mif.Tree.Drag(this, {

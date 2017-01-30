@@ -14,7 +14,7 @@ Mif.Tree.Node.implement({
 
 
 var tree = new Mif.Tree({
-	container: $('tree_container'),
+	container: $('tree-container'),
 	initialize: function(){
 		this.initSortable();
 		new Mif.Tree.KeyNav(this);

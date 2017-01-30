@@ -3,7 +3,7 @@ window.addEvent('domready',function(){
 		initialize: function(){
 			new  Mif.Tree.KeyNav(this);
 		},
-		container: $('tree_container'),
+		container: $('tree-container'),
 		types: {
 			folder:{
 				openIcon: 'mif-tree-open-icon',

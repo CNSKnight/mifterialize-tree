@@ -1,33 +1,58 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
 <head>
-	<title>Mif.Tree Demos</title><!-- demos based on mootools demos . Thanks mooteam. http://mootools.net-->
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<link rel="stylesheet" type="text/css" media="screen" href="../assets/styles/demos.css" />
-	<script type="text/javascript" src="../assets/scripts/mootools-core.js"></script>
-	<script type="text/javascript" src="../assets/scripts/mootools-more.js"></script>
-	<script type="text/javascript" src="../assets/scripts/Builder.js"></script>
-	<script type="text/javascript">Builder.includeType('source');</script>
-	<script type="text/javascript" src="../assets/scripts/demos.js"></script>
+    <title>Mif.Tree Demos</title>
+    <!-- demos based on mootools demos . Thanks mooteam. http://mootools.net-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../assets/styles/demos.css" />
+    <script type="text/javascript" src="../assets/scripts/mootools-core.js"></script>
+    <script type="text/javascript" src="../assets/scripts/mootools-more.js"></script>
+    <script type="text/javascript" src="../assets/scripts/Builder.js"></script>
+    <script type="text/javascript">
+        Builder.includeType('source');
+    </script>
+    <script type="text/javascript" src="../assets/scripts/demos.js"></script>
+    <style type="text/css">
+        header,
+        main,
+        footer {
+            margin-left: 300px;
+        }
+        
+        .demos-content>div {
+            margin-top: 1em;
+        }
+    </style>
 </head>
+
 <body>
-	<div id="container">
-		<div id="title">
-			<h1><a href=".."><span class="mif-m">M</span><span class="mif-i">i</span><span class="mif-f">f</span><span class="mif-dot">.</span><span class="mif-tree">Tree</span></a> <span>Demos</span></h1>
-		</div>
+    <header>
+        <div id="title" class="container">
+            <h1><a href=".."><span class="mif-m">M</span><span class="mif-i">i</span><span class="mif-f">f</span><span class="mif-dot">.</span><span class="mif-tree">Tree</span></a> <span>Demos</span></h1>
+        </div>
+        <div class="side-nav fixed"></div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div id="demos-wrapper" class="card">
+                        <div class="card-content">
+                            <span class="card-title">Card Title</span>
+                            <div class="demos-content">
+                            </div>
+                        </div>
 
-		<div id="menu">
-			<div id="menu-wrapper"></div>
-			<span class="spc"></span>
-		</div>
-
-		<div id="demos">
-			<div id="demos-wrapper"></div>
-			<div id="footer">
-				<p>Released under the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0</a> License</p>
-			</div>
-			<span class="spc"></span>
-		</div>
-	</div>
+                    </div>
+                </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>Released under the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0</a> License</p>
+        </div>
+    </footer>
 </body>
+
 </html>

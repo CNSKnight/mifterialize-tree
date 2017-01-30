@@ -1,6 +1,6 @@
 window.addEvent('domready',function(){
 	var tree = new Mif.Tree({
-		container: $('tree_container'),
+		container: $('tree-container'),
 		forest: true,
 		initialize: function(){
 			this.initCheckbox('simple');

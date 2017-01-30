@@ -3,7 +3,7 @@ window.addEvent('domready',function(){
 		initialize: function(){
 			this.initSortable();
 		},
-		container: $('tree_container'),// tree container
+		container: $('tree-container'),// tree container
 		types: {// node types
 			folder:{
 				openIcon: 'mif-tree-open-icon',//css class open icon

@@ -1,5 +1,5 @@
 DOMTree = new Mif.Tree({
-	container: $('tree_container'),
+	container: $('tree-container'),
 	types: {
 		folder:{
 			cls: 'dom-object',

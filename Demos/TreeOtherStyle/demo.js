@@ -1,6 +1,6 @@
 window.addEvent('domready',function(){
 	SimpleTree = new Mif.Tree({
-		container: $('tree_container'),
+		container: $('tree-container'),
 		types: {
 			folder:{
 				openIcon: 'mif-tree-open-icon',

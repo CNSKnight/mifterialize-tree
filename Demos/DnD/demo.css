@@ -1,6 +1,6 @@
 .container{
 height:250px;
-width:200px;
+
 position:relative;
 border:solid 1px #cecece;
 float:left;
@@ -9,7 +9,7 @@ margin-left:10px;
 
 #drop_container{
 position:relative;
-width:200px;
+
 height:230px;
 background:#faf9c7;
 float:left;

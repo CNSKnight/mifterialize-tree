@@ -1,6 +1,6 @@
 window.addEvent('domready',function(){
 	tree = new Mif.Tree({
-		container: $('tree_container'),
+		container: $('tree-container'),
 		forest: true,
 		initialize: function(){
 			new Mif.Tree.KeyNav(this);

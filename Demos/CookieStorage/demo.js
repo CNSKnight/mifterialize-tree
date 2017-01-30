@@ -9,7 +9,7 @@ window.addEvent('domready',function(){
 	});
 
 	tree = new Mif.Tree({
-		container: $('tree_container'),// tree container
+		container: $('tree-container'),// tree container
 		initialize: function(){
 			this.initCheckbox('simple');
 			var storage=new Mif.Tree.CookieStorage(this);

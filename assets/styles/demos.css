@@ -83,12 +83,12 @@ a {
 }
 
 #title {
-	position: absolute;
-	top: 0;
-	left: 0;
+	/* position: absolute; */
+	/* top: 0; */
+	/* left: 0; */
 	width: 100%;
-	padding: 5px 0;
-	background: #aaa;
+	/* padding: 5px 0; */
+	/* background: #aaa; */
 	background: #41464D;
 	color: #F3F1F1;
 	height: 30px;
@@ -152,9 +152,9 @@ a:hover, a:active {
 }
 
 #title h1 {
-	font: 25px/1.1 Arial, sans-serif;
+	font: 2em/1.5em Arial, sans-serif;
 	font-weight: bolder;
-	float: left;
+	/* float: left; */
 	margin: 1px 0 2px 20px;
 	text-shadow: 0 2px 2px rgba(0,0,0,0.4);
 }
