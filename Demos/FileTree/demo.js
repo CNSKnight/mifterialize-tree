@@ -34,17 +34,17 @@ var tree = new Mif.Tree({
 	},
 	types: {
 		folder:{
-			openIcon: 'mif-tree-open-icon',
-			closeIcon: 'mif-tree-close-icon',
+			openIcon: 'mt-open-icon',
+			closeIcon: 'mt-close-icon',
 			loadable: true
 		},
 		file:{
-			openIcon: 'mif-tree-file-open-icon',
-			closeIcon: 'mif-tree-file-close-icon'
+			openIcon: 'mt-file-open-icon',
+			closeIcon: 'mt-file-close-icon'
 		},
 		loader:{
-			openIcon: 'mif-tree-loader-open-icon',
-			closeIcon: 'mif-tree-loader-close-icon',
+			openIcon: 'mt-loader-open-icon',
+			closeIcon: 'mt-loader-close-icon',
 			DDnotAllowed: ['inside','after']
 		}
 	},

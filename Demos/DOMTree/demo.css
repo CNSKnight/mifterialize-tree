@@ -5,12 +5,12 @@ position:relative;
 border:solid 1px #c7c7c7;
 }
 
-.mif-tree-wrapper{
+.mt-wrapper{
 font-family:verdana;
 font-size:11px;
 }
 
-.mif-tree-name{
+.mt-name{
 margin-left:0;
 padding-left:4px;
 }
@@ -40,11 +40,11 @@ color:#409d4b;
 font-weight:bold;
 }
 
-.mif-tree-empty-icon{
+.mt-empty-icon{
 padding-right:0;
 }
 
-.mif-tree-hover-gadjet .mif-tree-name, .mif-tree-hover-name .mif-tree-name, .mif-tree-hover-icon .mif-tree-name{
+.mt-hover-gadjet .mt-name, .mt-hover-name .mt-name, .mt-hover-icon .mt-name{
 color:blue;
 text-decoration:underline;
 }
@@ -54,7 +54,7 @@ text-decoration:underline;
 ===============GLOBAL=================
 ......................................................................................*/
 
-.mif-tree-wrapper{
+.mt-wrapper{
 position: absolute;
 width: 100%;
 height:100%;
@@ -68,66 +68,66 @@ white-space:nowrap;
 cursor:default;
 }
 
-.mif-tree-bg{
+.mt-bg{
 width:100%;
 height:100%;
 position:absolute;
 overflow:hidden;
 }
 
-.mif-tree-bg-container{
+.mt-bg-container{
 width:100%;
 display:none;
 }
 
-.mif-tree-bg-node{
+.mt-bg-node{
 width:100%;
 height:18px;
 }
 
-.mif-tree-bg-selected{
+.mt-bg-selected{
 background-color:#dcd7ab;
 }
 
-.mif-tree-wrapper:focus{
+.mt-wrapper:focus{
 outline:0;
 }
 
-.mif-tree-wrapper span{
+.mt-wrapper span{
 padding-bottom:2px;
 padding-top:2px;
 cursor:inherit;
 }
 
-.mif-tree-children{
+.mt-children{
 padding-left: 18px;
 width:auto;
 }
 
-.mif-tree-node{
+.mt-node{
 background:url('../../Source/assets/images/line.gif') repeat-y 8px 0px;
 }
 
-.mif-tree-node-last{
+.mt-node-last{
 background:url('../../Source/assets/images/line.gif') no-repeat 8px 0px;
 }
 
-.mif-tree-name{
+.mt-name{
 cursor: default;
 overflow:hidden;
 margin-left:4px;
 }
 
-.mif-tree-name a{
+.mt-name a{
 color:red;
 }
 
-.mif-tree-name a:hover{
+.mt-name a:hover{
 color:blue;
 }
 
 
-.mif-tree-node-wrapper{
+.mt-node-wrapper{
 background:url('../../Source/assets/images/horizontal-line.gif') no-repeat 9px center;
 }
 
@@ -135,7 +135,7 @@ background:url('../../Source/assets/images/horizontal-line.gif') no-repeat 9px c
 ================GADJETS=================
 ......................................................................................*/
 
-.mif-tree-gadjet{
+.mt-gadjet{
 background-image:url('../../Source/assets/images/twistyGadjets.gif');
 padding-right: 16px;
 z-index:1;
@@ -144,31 +144,31 @@ background-repeat:no-repeat;
 cursor:default;
 }
 
-.mif-tree-gadjet-none{
+.mt-gadjet-none{
 background:none;
 }
 
-.mif-tree-gadjet-minus{
+.mt-gadjet-minus{
 background-position: 0px 50%;
 }
 
-.mif-tree-gadjet-plus{
+.mt-gadjet-plus{
 background-position: -18px 50%;
 }
 
 /*
-.mif-tree-gadjet-hover .mif-tree-gadjet-minus{
+.mt-gadjet-hover .mt-gadjet-minus{
 background-position: -54px 50%;
 }
 
-.mif-tree-gadjet-hover .mif-tree-gadjet-plus{
+.mt-gadjet-hover .mt-gadjet-plus{
 background-position: -72px 50%;
 }
 
 */
 
 
-/*.mif-tree-gadjet-hover{
+/*.mt-gadjet-hover{
 background-image:url('../../Source/assets/images/gadjets-hover.gif');
 }*/
 
@@ -178,7 +178,7 @@ background-image:url('../../Source/assets/images/gadjets-hover.gif');
 /*...................................................................................
 ================ICONS=================
 ......................................................................................*/
-.mif-tree-icon{
+.mt-icon{
 
 }
 
@@ -190,13 +190,13 @@ background-image:url('../../Source/assets/images/gadjets-hover.gif');
 ================SELECTION=================
 ......................................................................................*/
 
-.mif-tree-node-selected .mif-tree-name{
+.mt-node-selected .mt-name{
 background-color: #010161;
 color:#fff;
 text-transform:italic;
 }
 
-.mif-tree-highlighter{
+.mt-highlighter{
 height:18px;
 overflow:hidden;
 width:100%;
@@ -214,7 +214,7 @@ position:absolute;
 /*...................................................................................
 ===============D'n'D=================
 ......................................................................................*/
-.mif-tree-pointer{
+.mt-pointer{
 height:1px;
 overflow: hidden;
 position: absolute;
@@ -224,53 +224,53 @@ background-color:#292fef;
 }
 
 
-.mif-tree-ghost{
+.mt-ghost{
 background-color:#fff;
 border:solid 2px #e8e8f7;
 padding-left:2px;
 }
 
-.mif-tree-ghost .mif-tree-node-wrapper{
+.mt-ghost .mt-node-wrapper{
 background:none;
 }
 
-.mif-tree-ghost span.mif-tree-text{
+.mt-ghost span.mt-text{
 padding-top:1px;
 padding-bottom:1px;
 }
 
-.mif-tree-ghost-icon{
+.mt-ghost-icon{
 padding-left:16px;
 background-color:#fff;
 background-repeat:no-repeat;
 background-image:url('../../Source/assets/images/dropzone.gif');
 }
 
-.mif-tree-ghost-after{
+.mt-ghost-after{
 background-position:-64px 2px;
 }
 
-.mif-tree-ghost-before{
+.mt-ghost-before{
 background-position:-48px 2px;
 }
 
-.mif-tree-ghost-between{
+.mt-ghost-between{
 background-position:-16px 2px;
 }
 
-.mif-tree-ghost-inside{
+.mt-ghost-inside{
 background-position:-0px 2px;
 }
 
-.mif-tree-ghost-notAllowed{
+.mt-ghost-notAllowed{
 background-position:-32px 2px;
 }
 
-.mif-tree-drag-current{
+.mt-drag-current{
 background-color:#cfcfd8;
 }
 
-.mif-tree-replace{
+.mt-replace{
 background-color:#99c8fb;
 }
 
@@ -281,23 +281,23 @@ background-color:#99c8fb;
 /*...................................................................................
 ================CHECKBOX=================
 ......................................................................................*/
-.mif-tree-checkbox{
+.mt-checkbox{
 padding-left:18px;
 }
 
-.mif-tree-node-checked, .mif-tree-node-checked .mif-tree-checkbox{
+.mt-node-checked, .mt-node-checked .mt-checkbox{
 background:url('../../Source/assets/images/checked.gif') center 2px no-repeat;
 }
 
-.mif-tree-node-unchecked, .mif-tree-node-unchecked .mif-tree-checkbox{
+.mt-node-unchecked, .mt-node-unchecked .mt-checkbox{
 background:url('../../Source/assets/images/unchecked.gif') center 2px no-repeat;
 }
 
-.mif-tree-node-checked-selected{
+.mt-node-checked-selected{
 background:url('../../Source/assets/images/checked_selected.gif') center 2px no-repeat;
 }
 
-.mif-tree-node-unchecked-selected{
+.mt-node-unchecked-selected{
 background:url('../../Source/assets/images/unchecked_selected.gif') center 2px no-repeat;
 }
 
@@ -311,7 +311,7 @@ background:url('../../Source/assets/images/unchecked_selected.gif') center 2px n
 /*...................................................................................
 ===============RENAME=================
 ......................................................................................*/
-.mif-tree-rename{
+.mt-rename{
 display: inline;
 line-height: 14px;
 height:14px;

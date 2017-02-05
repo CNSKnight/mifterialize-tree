@@ -6,8 +6,8 @@ window.addEvent('domready',function(){
 		},
 		types: {
 			folder:{
-				openIcon: 'mif-tree-open-icon',
-				closeIcon: 'mif-tree-close-icon'
+				openIcon: 'mt-open-icon',
+				closeIcon: 'mt-close-icon'
 			}
 		},
 		dfltType:'folder',

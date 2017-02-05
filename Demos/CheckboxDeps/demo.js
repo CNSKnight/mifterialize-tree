@@ -8,27 +8,27 @@ window.addEvent('domready',function(){
 		},
 		types: {
 			folder:{
-				openIcon: 'mif-tree-open-icon',
-				closeIcon: 'mif-tree-close-icon'
+				openIcon: 'mt-open-icon',
+				closeIcon: 'mt-close-icon'
 			},
 			loader:{
-				openIcon: 'mif-tree-loader-open-icon',
-				closeIcon: 'mif-tree-loader-close-icon'
+				openIcon: 'mt-loader-open-icon',
+				closeIcon: 'mt-loader-close-icon'
 			},
 			disabled:{
-				openIcon: 'mif-tree-open-icon',
-				closeIcon: 'mif-tree-close-icon',
+				openIcon: 'mt-open-icon',
+				closeIcon: 'mt-close-icon',
 				dragDisabled: true,
 				cls: 'disabled'
 			},
 			book:{
-				openIcon: 'mif-tree-book-icon',
-				closeIcon: 'mif-tree-book-icon',
+				openIcon: 'mt-book-icon',
+				closeIcon: 'mt-book-icon',
 				loadable: true
 			},
 			bin:{
-				openIcon: 'mif-tree-bin-open-icon',
-				closeIcon: 'mif-tree-bin-close-icon'
+				openIcon: 'mt-bin-open-icon',
+				closeIcon: 'mt-bin-close-icon'
 			}
 		},
 		dfltType:'folder'

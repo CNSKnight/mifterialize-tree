@@ -3,12 +3,12 @@ window.addEvent('domready',function(){
 		container: $('tree-container'),// tree container
 		types: {// node types
 			folder:{
-				openIcon: 'mif-tree-open-icon',//css class open icon
-				closeIcon: 'mif-tree-close-icon'// css class close icon
+				openIcon: 'mt-open-icon',//css class open icon
+				closeIcon: 'mt-close-icon'// css class close icon
 			},
 			green:{
-				openIcon: 'mif-tree-open-icon',//css class open icon
-				closeIcon: 'mif-tree-close-icon',// css class close icon
+				openIcon: 'mt-open-icon',//css class open icon
+				closeIcon: 'mt-close-icon',// css class close icon
 				cls: 'green'
 			}
 		},

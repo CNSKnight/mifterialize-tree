@@ -43,7 +43,7 @@ Mif.Tree.Drag = new Class({
 			tree.root.dropDenied.combine(['before', 'after']);
 		});
 		
-		this.pointer = new Element('div').addClass('mif-tree-pointer').inject(tree.wrapper);
+		this.pointer = new Element('div').addClass('mt-pointer').inject(tree.wrapper);
 		
 		this.current = Mif.Tree.Drag.current;
 		this.target = Mif.Tree.Drag.target;
@@ -75,7 +75,7 @@ Mif.Tree.Drag = new Class({
 			this.droppables.each(function(item){
 				item.getElement().addEvents({mouseleave: this.bound.leave, mouseenter: this.bound.enter});
 			}, this);
-			Mif.Tree.Drag.current.getDOM('name').addClass('mif-tree-drag-current');
+			Mif.Tree.Drag.current.getDOM('name').addClass('mt-drag-current');
 			this.addGhost();
 		}, true);
 		this.addEvent('complete', function(){
@@ -83,7 +83,7 @@ Mif.Tree.Drag = new Class({
 			this.droppables.each(function(item){
 				item.getElement().removeEvent('mouseleave', this.bound.leave).removeEvent('mouseenter', this.bound.enter);
 			}, this);
-			Mif.Tree.Drag.current.getDOM('name').removeClass('mif-tree-drag-current');
+			Mif.Tree.Drag.current.getDOM('name').removeClass('mt-drag-current');
 			var dropZone = Mif.Tree.Drag.dropZone;
 			if(!dropZone || dropZone.where=='notAllowed'){
 				Mif.Tree.Drag.startZone.onstop();
@@ -126,10 +126,10 @@ Mif.Tree.Drag = new Class({
 	
 	dragTargetSelect: function(){
 		function addDragTarget(){
-			this.current.getDOM('name').addClass('mif-tree-drag-current');
+			this.current.getDOM('name').addClass('mt-drag-current');
 		}
 		function removeDragTarget(){
-			this.current.getDOM('name').removeClass('mif-tree-drag-current');
+			this.current.getDOM('name').removeClass('mt-drag-current');
 		}
 		this.addEvent('start',addDragTarget.bind(this));
 		this.addEvent('beforeComplete',removeDragTarget.bind(this));
@@ -139,7 +139,7 @@ Mif.Tree.Drag = new Class({
 		var dropZone = Mif.Tree.Drag.dropZone;
 		if(dropZone){
 			dropZone.where = 'notAllowed';
-			Mif.Tree.Drag.ghost.firstChild.className = 'mif-tree-ghost-icon mif-tree-ghost-'+dropZone.where;
+			Mif.Tree.Drag.ghost.firstChild.className = 'mt-ghost-icon mt-ghost-'+dropZone.where;
 			if(dropZone.onleave) dropZone.onleave();
 			Mif.Tree.Drag.dropZone = false;
 		}
@@ -258,7 +258,7 @@ Mif.Tree.Drag = new Class({
 		if(where == 'after' && target && (target.getNext()) || where == 'before' && target.getPrevious()){
 			ghostType = 'between';
 		}
-		Mif.Tree.Drag.ghost.firstChild.className = 'mif-tree-ghost-icon mif-tree-ghost-' + ghostType;
+		Mif.Tree.Drag.ghost.firstChild.className = 'mt-ghost-icon mt-ghost-' + ghostType;
 		if(where == 'notAllowed'){
 			this.tree.unselect();
 			return;
@@ -296,9 +296,9 @@ Mif.Tree.Drag = new Class({
 	
 	addGhost: function(){
 		var wrapper = this.current.getDOM('wrapper');
-		var ghost = new Element('span').addClass('mif-tree-ghost');
+		var ghost = new Element('span').addClass('mt-ghost');
 		ghost.adopt(Mif.Tree.Draw.node(this.current).getFirst())
-		.inject(document.body).addClass('mif-tree-ghost-notAllowed').setStyle('position', 'absolute');
+		.inject(document.body).addClass('mt-ghost-notAllowed').setStyle('position', 'absolute');
 		new Element('span').set('html',Mif.Tree.Draw.zeroSpace).inject(ghost,'top');
 		ghost.getLast().getFirst().className = '';
 		Mif.Tree.Drag.ghost = ghost;

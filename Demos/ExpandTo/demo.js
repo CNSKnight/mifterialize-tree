@@ -7,8 +7,8 @@ window.addEvent('domready',function(){
 		forest: true,
 		types: {// node types
 			folder:{
-				openIcon: 'mif-tree-open-icon',//css class open icon
-				closeIcon: 'mif-tree-close-icon'// css class close icon
+				openIcon: 'mt-open-icon',//css class open icon
+				closeIcon: 'mt-close-icon'// css class close icon
 			}
 		},
 		dfltType:'folder',//default node type

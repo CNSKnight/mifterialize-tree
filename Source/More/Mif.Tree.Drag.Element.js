@@ -19,12 +19,12 @@ Mif.Tree.Drag.Element=new Class({
 	
 	onleave: function(){
 		this.where='notAllowed';
-		Mif.Tree.Drag.ghost.firstChild.className='mif-tree-ghost-icon mif-tree-ghost-'+this.where;
+		Mif.Tree.Drag.ghost.firstChild.className='mt-ghost-icon mt-ghost-'+this.where;
 	},
 	
 	onenter: function(){
 		this.where='inside';
-		Mif.Tree.Drag.ghost.firstChild.className='mif-tree-ghost-icon mif-tree-ghost-'+this.where;
+		Mif.Tree.Drag.ghost.firstChild.className='mt-ghost-icon mt-ghost-'+this.where;
 	},
 	
 	beforeDrop: function(){
