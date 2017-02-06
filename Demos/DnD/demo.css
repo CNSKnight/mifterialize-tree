@@ -1,323 +1,49 @@
-.container{
-height:250px;
-
-position:relative;
-border:solid 1px #cecece;
-float:left;
-margin-left:10px;
+.container {
+    height: 250px;
+    position: relative;
+    border: solid 1px #cecece;
+    float: left;
+    margin-left: 10px;
 }
 
-#drop_container{
-position:relative;
-
-height:230px;
-background:#faf9c7;
-float:left;
-margin-left:20px;
-padding:10px;
-overflow:auto;
+#drop_container {
+    position: relative;
+    height: 230px;
+    background: #faf9c7;
+    float: left;
+    margin-left: 20px;
+    padding: 10px;
+    overflow: auto;
 }
 
-#drop_container ul{
-margin-left:20px;
+#drop_container ul {
+    margin-left: 20px;
 }
 
-#informer{
-clear:both;
+#informer {
+    clear: both;
 }
 
-#informer p{
-font-weight:bold;
+#informer p {
+    font-weight: bold;
 }
 
-#informer span{
-font-weight:normal;
-}
-
-
-/*...................................................................................
-===============GLOBAL=================
-......................................................................................*/
-
-.mt-wrapper{
-position: absolute;
-width: 100%;
-height:100%;
-margin:0;
-padding:0;
-overflow:auto;
-font-family:sans-serif;
-font-size:11px;
-line-height:18px;/******Tree node height******/
-white-space:nowrap;
-cursor:default;
-}
-
-.mt-bg{
-width:100%;
-height:100%;
-position:absolute;
-overflow:hidden;
-}
-
-.mt-bg-container{
-width:100%;
-display:none;
-}
-
-.mt-bg-node{
-width:100%;
-height:18px;
-}
-
-.mt-bg-selected{
-background-color:#dcd7ab;
-}
-
-.mt-wrapper:focus{
-outline:0;
-}
-
-.mt-wrapper span{
-padding-bottom:2px;
-padding-top:2px;
-/*cursor:inherit;*/
-}
-
-.mt-children{
-padding-left:18px;
-width:18px;
-}
-
-.mt-node{
-width:18px;
-background:url('../../Source/assets/images/line.gif') repeat-y 8px 0px;
-cursor:inherit;
-}
-
-.mt-node-last{
-background:url('../../Source/assets/images/line.gif') no-repeat 8px 0px;
-}
-
-.mt-name{
-overflow:hidden;
-margin-left:4px;
-cursor:inherit;
-}
-
-.mt-name a{
-color:red;
-}
-
-.mt-name a:hover{
-color:blue;
+#informer span {
+    font-weight: normal;
 }
 
 
-.mt-wrapper .mt-node-wrapper{
-background:url('../../Source/assets/images/horizontal-line.gif') no-repeat 9px center;
-cursor:inherit;
-}
-
-/*...................................................................................
-================GADJETS=================
-......................................................................................*/
-
-.mt-gadjet{
-background-image:url('../../Source/assets/images/twistyGadjets.gif');
-padding-right: 16px;
-z-index:1;
-overflow:hidden;
-background-repeat:no-repeat;
-cursor:default;
-}
-
-.mt-gadjet-none{
-background:none;
-}
-
-.mt-gadjet-minus{
-background-position: 0px 50%;
-}
-
-.mt-gadjet-plus{
-background-position: -18px 50%;
-}
-
-
-
-/*...................................................................................
-================ICONS=================
-......................................................................................*/
-.mt-icon{
-padding-right:18px;
-background-position:0 50%;
-background-repeat:no-repeat;
-cursor:inherit;
-}
-
-.mt-open-icon{
-background-image:url('../../Source/assets/images/openicon.gif')
-}
-
-.mt-close-icon{
-background-image:url('../../Source/assets/images/closeicon.gif')
-}
-
-
-.mt-loader-open-icon,.mt-loader-close-icon{
-background-image:url('../../Source/assets/images/mootree_loader.gif');
-}
-
-.mt-book-icon{
-background-image:url('../../Source/assets/images/book_icon.gif');
-}
-
-.mt-bin-open-icon{
-background-image:url('../../Source/assets/images/bin_open_icon.gif');
-}
-
-.mt-bin-close-icon{
-background-image:url('../../Source/assets/images/bin_close_icon.gif');
-}
-
-
-
-
-
-
-/*...................................................................................
-================SELECTION=================
-......................................................................................*/
-
-.mt-node-selected .mt-name{
-background-color: #010161;
-color:#fff;
-text-transform:italic;
-}
-
-.mt-hover-node .mt-name{
-text-decoration:underline
-}
-
-
-
-
-
-
-/*...................................................................................
-===============D'n'D=================
-......................................................................................*/
-.mt-pointer{
-height:1px;
-overflow: hidden;
-position: absolute;
-background-image:url('../../Source/assets/images/1.gif');
-background-repeat:repeat-x;
-background-color:#292fef;
-}
-
-
-.mt-ghost{
-background-color:#fff;
-border:solid 2px #e8e8f7;
-padding-left:2px;
-}
-
-.mt-ghost span{
-padding-top:2px;
-padding-bottom:2px;
-}
-
-.mt-ghost .mt-node-wrapper{
-background:none;
-}
-
-.mt-ghost span.mt-text{
-padding-top:1px;
-padding-bottom:1px;
-}
-
-.mt-ghost-icon{
-padding-left:16px;
-background-color:#fff;
-background-repeat:no-repeat;
-background-image:url('../../Source/assets/images/dropzone.gif');
-}
-
-.mt-ghost-after{
-background-position:-64px 2px;
-}
-
-.mt-ghost-before{
-background-position:-48px 2px;
-}
-
-.mt-ghost-between{
-background-position:-16px 2px;
-}
-
-.mt-ghost-inside{
-background-position:-0px 2px;
-}
-
-.mt-ghost-notAllowed{
-background-position:-32px 2px;
-}
-
-.mt-drag-current{
-background-color:#cfcfd8;
-}
-
-.mt-replace{
-background-color:#99c8fb;
-}
-
-
-
-
-
-/*...................................................................................
-================CHECKBOX=================
-......................................................................................*/
-.mt-checkbox{
-padding-left:18px;
-}
-
-.mt-node-checked, .mt-node-checked .mt-checkbox{
-background:url('../../Source/assets/images/checked.gif') center 2px no-repeat;
-}
-
-.mt-node-unchecked, .mt-node-unchecked .mt-checkbox{
-background:url('../../Source/assets/images/unchecked.gif') center 2px no-repeat;
-}
-
-.mt-node-checked-selected{
-background:url('../../Source/assets/images/checked_selected.gif') center 2px no-repeat;
-}
-
-.mt-node-unchecked-selected{
-background:url('../../Source/assets/images/unchecked_selected.gif') center 2px no-repeat;
-}
-
-
-
-
-
-
-
-
-/*...................................................................................
+/**
 ===============RENAME=================
-......................................................................................*/
-.mt-rename{
-display: inline;
-line-height: 14px;
-height:14px;
-cursor: default;
-overflow:hidden;
-font-family:sans-serif;
-font-size:11px;
-padding:1px 0;
-border:solid 1px black;
+*/
+
+.mt-rename {
+    display: inline;
+    line-height: 14px;
+    cursor: default;
+    overflow: hidden;
+    font-family: sans-serif;
+    font-size: 11px;
+    padding: 1px 0;
+    border: solid 1px black;
 }
