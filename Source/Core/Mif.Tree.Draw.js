@@ -17,18 +17,20 @@ Draw
             var prefix = node.tree.DOMidPrefix;
             var isLast = node.isLast() ? 'mt-node-last' : ''
             var hidn = node.hidden ? 'hidden' : '';
-            var icon = '';
-            if (node.tree.options.showsOpenCloseIcons) {
+            var icon = '',
+                gajet = '';
+            if (node.tree.options.showsOpenCloseIcons === undefined || node.tree.options.showsOpenCloseIcons) {
                 icon = '<span class="mt-icon ' + (node.closeIconUrl ? node.closeIconUrl : node.closeIcon) + '" uid="' + node.UID + '">' + Draw.zeroSpace + '</span>';
             }
             return [
                 '<div class="mt-node ' + isLast + ' ' + hidn + '" id="' + prefix + node.UID + '">',
                 // the wrapper needs to be here to segment the node from its children as a sibling
                 '<span class="mt-node-wrapper ', node.cls, (node.state.selected ? ' mt-node-selected' : ''), '" uid="', node.UID, '">',
-                '<span class="mt-gadjet mt-gadjet-', node.getGadjetType(), '" uid="', node.UID, '">', Draw.zeroSpace, '</span>',
-                this.getCheckbox(node),
+                // this one controls the branch visibility
+                '<span class="mt-gadjet mt-gadjet-' + node.getGadjetType() + '" uid="' + node.UID + '">' + Draw.zeroSpace + '</span>',
                 icon,
-                '<span class="mt-name" uid="' + node.UID + '">' + node.name + '</span>',
+                // checkbox now goes inside its label
+                '<label uid="' + node.UID + '">' + this.getCheckbox(node) + node.name + '</label>',
                 '</span>',
                 '<div class="mt-children"></div>',
                 '</div>'
