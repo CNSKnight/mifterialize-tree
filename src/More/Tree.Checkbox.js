@@ -1,15 +1,18 @@
-/*
-Mif.Tree.Checkbox
-*/
-Mif.Tree.implement({
+/**
+ * Tree.Checkbox
+ * @changelog - [0.9.2] must now require/import Checkbox and init w/(tree, type)
+ */
 
-    initCheckbox: function(type) {
-        this.checkboxType = type || 'simple';
-        this.dfltState.checked = 'unchecked';
-        this.defaults.hasCheckbox = true;
-        this.wrapper.addEvent('click', this.checkboxClick.bind(this));
-        if (this.checkboxType === 'simple') return;
-        this.addEvent('loadChildren', function(node) {
+import Node from './Tree.Node';
+
+var Checkbox = {
+    initCheckbox: function(tree, type) {
+        tree.checkboxType = type || 'simple';
+        tree.dfltState.checked = 'unchecked';
+        tree.defaults.hasCheckbox = true;
+        tree.wrapper.addEvent('click', Checkbox.checkboxClick.bind(this));
+        if (tree.checkboxType === 'simple') return;
+        tree.addEvent('loadChildren', function(node) {
             if (!node) return;
             if (node.state.checked === 'checked') {
                 node.recursive(function() {
@@ -36,9 +39,9 @@ Mif.Tree.implement({
         return checked;
     }
 
-});
+};
 
-Mif.Tree.Node.implement({
+Node.implement({
 
     'switch': function(state) {
         if (this.state.checked === state || !this.hasCheckbox) return this;
@@ -101,3 +104,5 @@ Mif.Tree.Node.implement({
     }
 
 });
+
+module.exports = Checkbox;
