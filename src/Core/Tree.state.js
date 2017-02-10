@@ -5,4 +5,4 @@ var state = {
     },
 };
 
-module.exports = state;
+export default state;

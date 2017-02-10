@@ -22,13 +22,13 @@ var Hover = {
         var cnode = this.mouse.node;
         var ctarget = this.mouse.target;
         Array.each(this.hoverState, function(node, target, state) {
-            if (node == cnode && (target == 'node' || target == ctarget)) return;
+            if (node === cnode && (target === 'node' || target === ctarget)) return;
             if (node) {
                 Hover.out(node, target);
                 state[target] = false;
                 this.fireEvent('hover', [node, target, 'out']);
             }
-            if (cnode && (target == 'node' || target == ctarget)) {
+            if (cnode && (target === 'node' || target === ctarget)) {
                 Hover.over(cnode, target);
                 state[target] = cnode;
                 this.fireEvent('hover', [cnode, target, 'over']);

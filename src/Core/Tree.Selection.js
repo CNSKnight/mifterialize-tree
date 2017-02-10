@@ -23,7 +23,7 @@ var Selection = {
     select: function(node) {
         if (!node) return this;
         var current = this.selected;
-        if (current == node) return this;
+        if (current === node) return this;
         if (current) {
             current.select(false);
             this.fireEvent('unSelect', [current]).fireEvent('selectChange', [current, false]);
@@ -66,4 +66,4 @@ Node.implement({
     }
 });
 
-module.exports = Selection;
+export default Selection;

@@ -1,5 +1,6 @@
 /**
  * Tree
+ * @note - Babel in play in this script - refactor accordingly
  */
 
 import Load from './Tree.Load';
@@ -14,7 +15,7 @@ var inFocus = null;
 
 var Tree = new Class({
 
-    version: '0.9.01',
+    version: '0.9.02',
 
     Implements: [Events, Options],
 
@@ -75,13 +76,13 @@ var Tree = new Class({
         if (MooTools.version >= '1.2.2' && this.options.initialize) this.options.initialize.call(this);
     },
 
-    bound: function() {
+    bound: () => {
         Array.each(arguments, function(name) {
             this.bound[name] = this[name].bind(this);
         }, this);
     },
 
-    events: function() {
+    events: () => {
         this.bound('mouse', 'mouseleave', 'mousedown', 'preventDefault', 'toggleClick', 'toggleDblclick', 'focus', 'blurOnClick', 'keyDown', 'keyUp');
 
         this.wrapper.addEvents({
@@ -104,17 +105,17 @@ var Tree = new Class({
         });
     },
 
-    blurOnClick: function(event) {
+    blurOnClick: event => {
         var target = event.target;
         while (target) {
-            if (target == this.container) return;
+            if (target === this.container) return;
             target = target.parentNode;
         }
         this.blur();
     },
 
-    focus: function() {
-        if (inFocus && inFocus == this) return this;
+    focus: () => {
+        if (inFocus && inFocus === this) return this;
         if (inFocus) inFocus.blur();
         inFocus = this;
         this.focused = true;
@@ -122,7 +123,7 @@ var Tree = new Class({
         return this.fireEvent('focus');
     },
 
-    blur: function() {
+    blur: () => {
         inFocus = null;
         if (!this.focused) return this;
         this.focused = false;
@@ -130,7 +131,7 @@ var Tree = new Class({
         return this.fireEvent('blur');
     },
 
-    $getIndex: function() { //return array of visible nodes.
+    $getIndex: () => { //return array of visible nodes.
         this.$index = [];
         var node = this.forest ? this.root.getFirst() : this.root;
         var previous = node;
@@ -143,31 +144,31 @@ var Tree = new Class({
         }
     },
 
-    preventDefault: function(event) {
+    preventDefault: event => {
         event.preventDefault();
     },
 
-    mousedown: function(event) {
+    mousedown: event => {
         if (event.rightClick) return;
         event.preventDefault();
         this.fireEvent('mousedown');
     },
 
-    mouseleave: function() {
+    mouseleave: () => {
         this.mouse.coords = { x: null, y: null };
         this.mouse.target = false;
         this.mouse.node = false;
         if (this.hover) this.hover();
     },
 
-    mouse: function(event) {
+    mouse: event => {
         this.mouse.coords = this.getCoords(event);
         var target = this.getTarget(event);
         this.mouse.target = target.target;
         this.mouse.node = target.node;
     },
 
-    getTarget: function(event) {
+    getTarget: event => {
         var target = event.target,
             node;
         while (!(/mt-/).test(target.className)) {
@@ -176,7 +177,7 @@ var Tree = new Class({
         var test = target.className.match(/mt-(gadjet)-[^n]|mt-(icon)|mt-(name)|mt-(checkbox)/);
         if (!test) {
             var y = this.mouse.coords.y;
-            if (y == -1 || !this.$index) {
+            if (y === -1 || !this.$index) {
                 node = false;
             } else {
                 node = this.$index[((y) / this.height).toInt()];
@@ -198,7 +199,7 @@ var Tree = new Class({
         };
     },
 
-    getCoords: function(event) {
+    getCoords: event => {
         var position = this.wrapper.getPosition();
         var x = event.page.x - position.x;
         var y = event.page.y - position.y;
@@ -209,39 +210,39 @@ var Tree = new Class({
         return { x: x, y: y };
     },
 
-    keyDown: function(event) {
+    keyDown: event => {
         this.key = event;
         this.key.state = 'down';
         if (this.focused) this.fireEvent('keydown', [event]);
     },
 
-    keyUp: function(event) {
+    keyUp: event => {
         this.key = {};
         this.key.state = 'up';
         if (this.focused) this.fireEvent('keyup', [event]);
     },
 
-    toggleDblclick: function(event) {
+    toggleDblclick: event => {
         var target = this.mouse.target;
-        if (!(target == 'name' || target == 'icon')) return;
+        if (!(target === 'name' || target === 'icon')) return;
         this.mouse.node.toggle();
     },
 
-    toggleClick: function(event) {
-        if (this.mouse.target != 'gadjet') return;
+    toggleClick: event => {
+        if (this.mouse.target !== 'gadjet') return;
         this.mouse.node.toggle();
     },
 
-    initScroll: function() {
+    initScroll: () => {
         this.scroll = new Fx.Scroll(this.wrapper, { link: 'cancel' });
     },
 
-    scrollTo: function(node) {
+    scrollTo: node => {
         var position = node.getVisiblePosition();
         var top = position * this.height;
         var up = (top < this.wrapper.scrollTop);
         var down = (top > (this.wrapper.scrollTop + this.wrapper.clientHeight - this.height));
-        if (position == -1 || (!up && !down)) {
+        if (position === -1 || (!up && !down)) {
             this.scroll.fireEvent('complete');
             return false;
         }
@@ -254,21 +255,21 @@ var Tree = new Class({
         return this;
     },
 
-    updateOpenState: function() {
+    updateOpenState: () => {
         this.addEvents({
-            'drawChildren': function(parent) {
+            drawChildren: function(parent) {
                 var children = parent.children;
                 for (var i = 0, l = children.length; i < l; i++) {
                     children[i].updateOpenState();
                 }
             },
-            'drawRoot': function() {
+            drawRoot: () => {
                 this.root.updateOpenState();
             }
         });
     },
 
-    expandTo: function(node) {
+    expandTo: node => {
         if (!node) return this;
         var path = [];
         while (!node.isRoot() && !(this.forest && node.getParent().isRoot())) {
@@ -282,7 +283,7 @@ var Tree = new Class({
         return this;
     },
 
-    initExpandTo: function() {
+    initExpandTo: () => {
         this.addEvent('loadChildren', function(parent) {
             if (!parent) return;
             var children = parent.children;
@@ -304,7 +305,7 @@ var Tree = new Class({
         });
     },
 
-    load: function(options) {
+    load: options => {
         var tree = this;
         this.loadOptions = this.loadOptions || Function.from({});
 
@@ -338,17 +339,17 @@ var Tree = new Class({
 });
 
 Tree.UID = 0;
-root.Mif.Tree = Tree;
 
 Array.implement({
-inject: function(added, current, where) { //inject added after or before current;
-    var pos = this.indexOf(current) + (where == 'before' ? 0 : 1);
-    for (var i = this.length - 1; i >= pos; i--) {
-        this[i + 1] = this[i];
+    inject: function(added, current, where) { //inject added after or before current;
+        var pos = this.indexOf(current) + (where === 'before' ? 0 : 1);
+        for (var i = this.length - 1; i >= pos; i--) {
+            this[i + 1] = this[i];
+        }
+        this[pos] = added;
+        return this;
     }
-    this[pos] = added;
-    return this;
-}
 
 });
-})(window);
+
+export default Tree;

@@ -111,7 +111,7 @@ var Draw = {
         var container;
         if (node.tree.forest && node.parentNode.isRoot()) {
             container = node.tree.wrapper.getElement('.mt-children-root');
-        } else if (node.tree.root == node) {
+        } else if (node.tree.root === node) {
             container = node.tree.wrapper;
         } else {
             container = node.parentNode.getDOM('children');

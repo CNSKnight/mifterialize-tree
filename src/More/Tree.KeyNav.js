@@ -140,4 +140,4 @@ DOMEvent.defineKeys({
     35: 'end',
 });
 
-module.exports = KeyNav;
+export default KeyNav;

@@ -24,7 +24,7 @@ Node.implement({
         switch (where) {
             case 'after':
             case 'before':
-                if (node['get' + (where == 'after' ? 'Next' : 'Previous')]() == this) return false;
+                if (node['get' + (where === 'after' ? 'Next' : 'Previous')]() === this) return false;
                 if (this.parentNode) {
                     this.parentNode.children.erase(this);
                 }
@@ -32,7 +32,7 @@ Node.implement({
                 this.parentNode.children.inject(this, node, where);
                 break;
             case 'inside':
-                if (node.tree && node.getLast() == this) return false;
+                if (node.tree && node.getLast() === this) return false;
                 if (this.parentNode) {
                     this.parentNode.children.erase(this);
                 }
@@ -51,7 +51,7 @@ Node.implement({
                 break;
         }
         var tree = node.tree || node;
-        if (this == this.tree.root) {
+        if (this === this.tree.root) {
             this.tree.root = false;
         }
         if (this.tree != tree) {

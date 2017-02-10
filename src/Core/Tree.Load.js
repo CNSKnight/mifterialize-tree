@@ -13,7 +13,7 @@ var Load = {
                 tree: tree,
                 parentNode: parent || undefined
             }, child);
-            if (tree.forest || parent != undefined) {
+            if (tree.forest || parent) {
                 parent.children.unshift(node);
             } else {
                 tree.root = node;
@@ -33,4 +33,4 @@ var Load = {
 
 };
 
-module.exports = Load;
+export default Load;

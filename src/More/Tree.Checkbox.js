@@ -58,7 +58,7 @@ Node.implement({
         });
         this.setParentCheckbox();
         this.tree.fireEvent(checked === 'checked' ? 'check' : 'unCheck', this);
-        this.tree.fireEvent('switch', [this, (checked == 'checked' ? true : false)]);
+        this.tree.fireEvent('switch', [this, (checked === 'checked' ? true : false)]);
         return this;
     },
 
@@ -105,4 +105,4 @@ Node.implement({
 
 });
 
-module.exports = Checkbox;
+export default Checkbox;

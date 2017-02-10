@@ -8,14 +8,14 @@ Tree.implement({
     attachRenameEvents: function() {
         this.wrapper.addEvents({
             click: function(event) {
-                if ($(event.target).get('tag') == 'input') return;
+                if ($(event.target).get('tag') === 'input') return;
                 this.beforeRenameComplete();
             }.bind(this),
             keydown: function(event) {
-                if (event.key == 'enter') {
+                if (event.key === 'enter') {
                     this.beforeRenameComplete();
                 }
-                if (event.key == 'esc') {
+                if (event.key === 'esc') {
                     this.renameCancel();
                 }
             }.bind(this)
@@ -117,4 +117,4 @@ var Rename = {
     }
 };
 
-module.exports = Rename;
+export default Rename;

@@ -87,7 +87,7 @@ var Trag = new Class({
             }, this);
             Trag.current.getDOM('name').removeClass('mt-drag-current');
             var dropZone = Trag.dropZone;
-            if (!dropZone || dropZone.where == 'notAllowed') {
+            if (!dropZone || dropZone.where === 'notAllowed') {
                 Trag.startZone.onstop();
                 Trag.startZone.emptydrop();
                 return;
@@ -178,7 +178,7 @@ var Trag = new Class({
         do {
             for (var l = this.droppables.length; l--;) {
                 var zone = this.droppables[l];
-                if (parent == zone.getElement()) {
+                if (parent === zone.getElement()) {
                     return zone;
                 }
             }
@@ -188,7 +188,7 @@ var Trag = new Class({
     },
 
     keydown: function(event) {
-        if (event.key == 'esc') {
+        if (event.key === 'esc') {
             var zone = Trag.dropZone;
             if (zone) zone.where = 'notAllowed';
             this.stop(event);
@@ -197,7 +197,7 @@ var Trag = new Class({
 
     autoScroll: function() {
         var y = this.y;
-        if (y == -1) return;
+        if (y === -1) return;
         var wrapper = this.tree.wrapper;
         var top = y - wrapper.scrollTop;
         var bottom = wrapper.offsetHeight - top;
@@ -214,7 +214,7 @@ var Trag = new Class({
             this.scrolling = function(node) {
                 if (y != this.y) {
                     y = this.y;
-                    delta = (sign == 1 ? (y - wrapper.scrollTop) : (wrapper.offsetHeight - y + wrapper.scrollTop)) || 1;
+                    delta = (sign === 1 ? (y - wrapper.scrollTop) : (wrapper.offsetHeight - y + wrapper.scrollTop)) || 1;
                 }
                 wrapper.scrollTop = wrapper.scrollTop - sign * this.options.scrollSpeed / delta;
             }.periodical(this.options.scrollDelay, this, [sign]);
@@ -258,16 +258,16 @@ var Trag = new Class({
         var where = this.where;
         var target = this.target;
         var ghostType = where;
-        if (where == 'after' && target && (target.getNext()) || where == 'before' && target.getPrevious()) {
+        if (where === 'after' && target && (target.getNext()) || where === 'before' && target.getPrevious()) {
             ghostType = 'between';
         }
         Trag.ghost.firstChild.className = 'mt-ghost-icon mt-ghost-' + ghostType;
-        if (where == 'notAllowed') {
+        if (where === 'notAllowed') {
             this.tree.unselect();
             return;
         }
         if (target && target.tree) this.tree.select(target);
-        if (where == 'inside') {
+        if (where === 'inside') {
             if (target.tree && !target.isOpen() && !this.openTimer && (target.loadable || target.hasChildren())) {
                 this.wrapper = target.getDOM('wrapper').setStyle('cursor', 'progress');
                 this.openTimer = function() {
@@ -278,7 +278,7 @@ var Trag = new Class({
         } else {
             var wrapper = this.tree.wrapper;
             var top = this.index * this.tree.height;
-            if (where == 'after') top += this.tree.height;
+            if (where === 'after') top += this.tree.height;
             this.pointer.setStyles({
                 left: wrapper.scrollLeft,
                 top: top,
@@ -314,7 +314,7 @@ var Trag = new Class({
             if (this.options.allowContainerDrop && (this.tree.forest || !this.tree.root)) {
                 this.target = this.tree.$index.getLast();
                 this.index = this.tree.$index.length - 1;
-                if (this.index == -1) {
+                if (this.index === -1) {
                     this.where = 'inside';
                     this.target = this.tree.root || this.tree;
                 } else {
@@ -365,7 +365,7 @@ var Trag = new Class({
                 }
             }
         };
-        if (this.where == where && this.target == target) return false;
+        if (this.where === where && this.target === target) return false;
         this.where = where;
         this.target = target;
         this.fireEvent('drag');
@@ -415,7 +415,7 @@ var Trag = new Class({
             where = this.where;
         Trag.ghost.dispose();
         var action = this.action || (this.tree.key[this.options.modifier] ? 'copy' : 'move');
-        if (this.where == 'inside' && target.tree && !target.isOpen()) {
+        if (this.where === 'inside' && target.tree && !target.isOpen()) {
             if (target.tree) target.toggle();
             if (target.$loading) {
                 var onLoad = function() {

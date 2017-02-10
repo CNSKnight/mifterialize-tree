@@ -40,10 +40,10 @@ var Node = new Class({
 
     getDOM: function(what) {
         var node = $(this.tree.DOMidPrefix + this.UID);
-        if (what == 'node') return node;
+        if (what === 'node') return node;
         var wrapper = node.getFirst();
-        if (what == 'wrapper' || wrapper.hasClass('mt-' + what)) return wrapper;
-        if (what == 'children') return wrapper.getNext();
+        if (what === 'wrapper' || wrapper.hasClass('mt-' + what)) return wrapper;
+        if (what === 'children') return wrapper.getNext();
 
         return wrapper.getElement('.mt-' + what);
     },
@@ -53,12 +53,12 @@ var Node = new Class({
     },
 
     toggle: function(state) {
-        if (this.state.open == state || this.$loading || this.$toggling) return this;
+        if (this.state.open === state || this.$loading || this.$toggling) return this;
         var parent = this.getParent();
 
         function toggle(type) {
             this.state.open = !this.state.open;
-            if (type == 'drawed') {
+            if (type === 'drawed') {
                 this.drawToggle();
             } else {
                 parent._toggle = (parent._toggle || [])[this.state.open ? 'include' : 'erase'](this);
@@ -109,17 +109,17 @@ var Node = new Class({
     },
 
     isLast: function() {
-        if (this.parentNode == null || this.parentNode.children.getLast() == this) return true;
+        if (this.parentNode === null || this.parentNode.children.getLast() === this) return true;
         return false;
     },
 
     isFirst: function() {
-        if (this.parentNode == null || this.parentNode.children[0] == this) return true;
+        if (this.parentNode === null || this.parentNode.children[0] === this) return true;
         return false;
     },
 
     isRoot: function() {
-        return this.parentNode == null ? true : false;
+        return this.parentNode === null ? true : false;
     },
 
     getChildren: function() {
@@ -181,7 +181,7 @@ var Node = new Class({
 
     getPreviousVisible: function() {
         var index = this.tree.$index.indexOf(this);
-        return index == 0 ? null : this.tree.$index[index - 1];
+        return index === 0 ? null : this.tree.$index[index - 1];
     },
 
     getNextVisible: function() {
@@ -198,7 +198,7 @@ var Node = new Class({
         if (this.isOpen()) {
             var next = this.getNextVisible();
             if (!next) return false;
-            if (next.parentNode != this) return false;
+            if (next.parentNode !== this) return false;
             return true;
         } else {
             var child = this.getFirst();
@@ -221,7 +221,7 @@ var Node = new Class({
 
     contains: function(node) {
         while (node) {
-            if (node == this) return true;
+            if (node === this) return true;
             node = node.parentNode;
         };
         return false;
@@ -250,6 +250,7 @@ var Node = new Class({
             case 'set':
                 this.type = type;
                 break;
+            default:
         }
         var current = {};
         this._property.each(function(p) {
@@ -276,8 +277,8 @@ var Node = new Class({
     },
 
     updateProperty: function(p, cv, nv) {
-        if (nv == cv) return this;
-        if (p == 'id') {
+        if (nv === cv) return this;
+        if (p === 'id') {
             delete state.ids[cv];
             if (nv) state.ids[nv] = this;
             return this;
@@ -313,6 +314,7 @@ var Node = new Class({
                     Draw.update(node);
                 });
                 return this;
+                // no default
         }
         return this;
     },

@@ -1,3 +1,6 @@
+/**
+ * CNSKnight Mif Tree
+ */
 import Tree from './Core/Tree';
 // [Browser, Class, Events, Options, Cookie, Drag, Element]
 const cmt = {
@@ -7,5 +10,5 @@ const cmt = {
     },
     Tree: Tree
 };
-
+window.cmt = window.Mif = cmt;
 export default cmt;
