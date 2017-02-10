@@ -2,10 +2,10 @@ var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
-
-
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -28,6 +28,7 @@ module.exports = {
     // This means they will be the "root" imports that are included in JS bundle.
     // The first two entry points enable "hot" CSS and auto-refreshes for JS.
     entry: [
+        // Include an alternative client for WebpackDevServer.
         require.resolve('webpack-dev-server/client') + '?/',
         require.resolve('webpack/hot/dev-server'),
         // We ship a few polyfills by default:
@@ -61,12 +62,7 @@ module.exports = {
         // We also include JSX as a common component filename extension to support
         // some tools, although we do not recommend using it, see:
         // https://github.com/facebookincubator/create-react-app/issues/290
-        extensions: ['.js', '.json', '.jsx', ''],
-        alias: {
-            // Support React Native Web
-            // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-            'react-native': 'react-native-web'
-        }
+        extensions: ['.js', '.json', '.jsx', '']
     },
 
     module: {
@@ -110,7 +106,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 include: paths.appSrc,
-                loader: 'babel',
+                loader: 'babel-loader',
                 query: {
 
                     // This is a feature of `babel-loader` for webpack (not Babel itself).
@@ -159,6 +155,12 @@ module.exports = {
         ];
     },
     plugins: [
+        // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
+        // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+        // In development, this will be an empty string.
+        new InterpolateHtmlPlugin({
+            PUBLIC_URL: publicUrl
+        }),
         // Generates an `index.html` file with the <script> injected.
         new HtmlWebpackPlugin({
             inject: true,
@@ -173,6 +175,16 @@ module.exports = {
         // a plugin that prints an error when you attempt to do this.
         // See https://github.com/facebookincubator/create-react-app/issues/240
         new CaseSensitivePathsPlugin(),
+        // If you require a missing module and then `npm install` it, you still have
+        // to restart the development server for Webpack to discover it. This plugin
+        // makes the discovery automatic so you don't have to restart.
+        // See https://github.com/facebookincubator/create-react-app/issues/186
+        new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+
+        // also in eslint config
+        new webpack.ProvidePlugin({
+
+        })
     ],
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
@@ -180,5 +192,20 @@ module.exports = {
         fs: 'empty',
         net: 'empty',
         tls: 'empty'
+    },
+
+    externals: {
+        MooTools: 'MooTools',
+        $: 'document.id',
+        'document.id': 'document.id',
+        Browser: 'Browser',
+        Class: 'Class',
+        Cookie: 'Cookie',
+        Drag: 'Drag',
+        Events: 'Events',
+        Fx: 'Fx',
+        Options: 'Options'
+
     }
+
 };

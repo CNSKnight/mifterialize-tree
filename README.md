@@ -1,9 +1,11 @@
 # miftree
-MooTools Tree control
+MooTools-Powered Tree Control MaterializeCSS Style
+Formerly MifTree
 
 - 10/15 - Lets get this beast up to spead - just gimme a sec
-- 01/17 - This will become miftree-materialize
-- 02/17 - Completed.
+- 01/17 - This will become Mifterialize
+- 02/17 - Refactor Completed
+-       - Integrated App serving Readme, Demos, and Docs
 
 
 - Known Issues:
