@@ -25,8 +25,8 @@ var Builder = {
 
     scripts: {
         source: {
-            'Core': ['Mif.Tree.mootools-patch', 'Mif.Tree', 'Mif.Tree.Node', 'Mif.Tree.Hover', 'Mif.Tree.Selection', 'Mif.Tree.Load', 'Mif.Tree.Draw'],
-            'More': ['Mif.Tree.KeyNav', 'Mif.Tree.Sort', 'Mif.Tree.Transform', 'Mif.Tree.Drag', 'Mif.Tree.Drag.Element', 'Mif.Tree.Checkbox', 'Mif.Tree.Rename', 'Mif.Tree.CookieStorage']
+            'Core': ['Tree', 'Tree.Node', 'Tree.Hover', 'Tree.Selection', 'Tree.Load', 'Tree.Draw'],
+            'More': ['Tree.KeyNav', 'Tree.Sort', 'Tree.Transform', 'Tree.Drag', 'Tree.Drag.Element', 'Tree.Checkbox', 'Tree.Rename', 'Tree.CookieStorage']
         },
 
         docs: {
