@@ -13,6 +13,7 @@ var historyApiFallback = require('connect-history-api-fallback');
 var httpProxyMiddleware = require('http-proxy-middleware');
 var detect = require('detect-port');
 var clearConsole = require('react-dev-utils/clearConsole');
+// clearConsole = function() {};
 var checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 var formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 var getProcessForPort = require('react-dev-utils/getProcessForPort');
@@ -21,7 +22,6 @@ var prompt = require('react-dev-utils/prompt');
 var pathExists = require('path-exists');
 var config = require('../config/webpack.config.dev');
 var paths = require('../config/paths');
-var checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 
 var useYarn = pathExists.sync(paths.yarnLockFile);
 var cli = useYarn ? 'yarn' : 'npm';
