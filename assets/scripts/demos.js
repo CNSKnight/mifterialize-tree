@@ -1,14 +1,15 @@
+/**
+ * 
+ */
 Request.implement({
-
     processScripts: function(text) {
-        if (this.options.evalResponse && (/(ecma|java)script/).test(this.getHeader('Content-type'))) return $exec(text);
+        if (this.options.evalResponse && (/(ecma|java)script/).test(this.getHeader('Content-type'))) return Browser.exec(text);
         return text.stripScripts(this.options.evalScripts);
     }
 
 });
 
 var Demos = {
-
     start: function() {
         if (location.protocol == 'file:') Demos.local();
         Demos.getList();
@@ -59,7 +60,8 @@ var Demos = {
                 new Element('script', { 'id': 'demo-js', 'type': 'text/javascript', 'src': folder + '/demo.js' }).inject(document.head);
                 Demos.setInformer(folder);
             }
-        }).GET();
+        });
+        demo.get();
     },
 
     parse: function(tree, folder) {
@@ -86,13 +88,14 @@ var Demos = {
     },
 
     getList: function() {
-        var request = new Request.JSON({ url: 'demos.json', onComplete: Demos.categories }).get();
+        var request = new Request.JSON({ url: 'demos.json', onComplete: Demos.categories });
+        request.get();
     },
 
     local: function() {
         Request.implement({
             getXHR: function() {
-                return (window.ActiveXObject) ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
+                return new XMLHttpRequest();
             },
             isSuccess: function() {
                 return (!this.status || (this.status >= 200) && (this.status < 300));
@@ -142,7 +145,7 @@ var Demos = {
                 .addEvent('click', function(event) {
                     event.preventDefault();
                     for (var item in informer) {
-                        if (item != type) {
+                        if (item !== type) {
                             informer[item].style.display = 'none';
                         } else {
                             if (informer[type].style.display == 'none') {
