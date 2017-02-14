@@ -38,17 +38,18 @@ new Mif.Tree.Drag(tree, options)
 
 ### Example
 
-	var treeWithDragAndDrop = new Mif.Tree({
-								initialize: function(){
-									new Mif.Tree.Drag(this, {
-										onComplete: function(){
-											alert('Drag complete!');
-										}
-									});
-								},
-								//...other options
-							})
-							
+    var treeWithDragAndDrop
+          = new Mif.Tree({
+            initialize: function(){
+                new Mif.Tree.Drag(this, {
+                    onComplete: function(){
+                        alert('Drag complete!');
+                    }
+                });
+            },
+            //...other options
+        })
+                  
 Class Mif.Tree.Node {#Mif.Tree.Node::Drag}
 ==========================================
 

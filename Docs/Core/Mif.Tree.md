@@ -34,10 +34,10 @@ Mif.Tree Method: constructor {#Mif.Tree:constructor}
 
 * UID - tree control unique identifier.
 
-
 ### Example:
 
 ##### javascript
+```
 	var testTree=new Mif.Tree({
 		types:{
 			nodeType:{
@@ -68,7 +68,7 @@ Mif.Tree Method: constructor {#Mif.Tree:constructor}
 	testTree.addEvent('onToggle',function(node, state){
 		alert('Node '+node.name+(state ? 'expanded' : 'collapsed'));
 	});
-	
+```	
 
 ##### resulting tree:
 
@@ -79,9 +79,6 @@ Mif.Tree Method: constructor {#Mif.Tree:constructor}
 	      |-node2.1
 
 
-
-
-	
 Mif.Tree Method: scrollTo {#Mif.Tree:scrollTo}
 ----------------------------------------------
 
@@ -98,8 +95,6 @@ Scrolls the node into view.
 ### Note: 
 	This function used in Mif.Tree.Drag and Mif.Tree.Transform.
 	
-
-
 Mif.Tree Method: expandTo {#Mif.Tree:expandTo}
 ----------------------------------------------
 

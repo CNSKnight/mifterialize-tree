@@ -8,7 +8,7 @@
 const Docs = {
     showdown: new window.showdown.Converter(),
     anchorsPath: '/Docs/index.html',
-    scriptsJson: '/scripts.json',
+    scriptsJson: '/Docs/scripts.json',
 
     start: function() {
         if (location.protocol == 'file:') Docs.local();
@@ -16,20 +16,45 @@ const Docs = {
     },
 
     loadScripts: function() {
-        Docs.Scripts = {};
-        new Request.JSON({
-            link: 'cancel',
-            url: this.scriptsJson
-        }).get().then(function(scripts) {
-            Object.each(scripts.json, function(files, dir) {
-                Docs.Scripts[dir] = Object.keys(files);
-            });
-            Docs.process();
+        let r = new Request.JSON({ url: this.scriptsJson }).get();
+        r.then(function(data) {
+            Docs.categories(data.json);
         });
     },
 
+    categories: function(list) {
+        var menu = document.body.getElement('.docs-bloc .side-nav');
+        Object.forEach(list, function(group, folder) {
+            var category = new Element('h2', { 'class': 'collection-header', 'text': folder }).inject(menu);
+            var collection = new Element('div', { 'class': 'collection' }).inject(category, 'after');
+
+            Object.forEach(group, function(item, doc) {
+                new Element('a', {
+                    class: 'collection-item',
+                    href: '#' + folder + '/' + doc,
+                    text: doc,
+                    title: item.desc,
+                    events: {
+                        'click': function(e) {
+                            e.preventDefault();
+                            document.location.hash = e.target.get('text');
+                            Docs.load(folder + '/' + this.get('text'));
+                        }
+                    }
+                }).inject(collection);
+            });
+        });
+    },
+    load: function(doc) {
+        let r = new Request({ link: 'cancel', url: 'Docs/' + doc + '.md' }).get();
+        r.then(function(doc) {
+            doc && doc.text && Docs.update(doc.text);
+        });
+    },
+
+    // @dep
     process: function() {
-        var menu = $('menu-wrapper'),
+        var menu = document.body.getElement('.docs-bloc .side-nav'),
             elements = [],
             files;
 
@@ -39,18 +64,15 @@ const Docs = {
         Object.each(Docs.Scripts, function(scripts, folder) {
             var head = new Element('h2', { 'text': folder });
             var list = new Element('ul', { 'class': 'folder' });
-            var wrapper = $('docs-wrapper');
             list.adopt(scripts.map(function(script) {
                 var file = new Element('h3').adopt(new Element('a', {
                     'text': script,
-                    'href': '#' + folder + '/' + script,
                     'events': {
                         'click': function() {
                             $('docs-wrapper').empty().set('html', '<h2>Loading...</h2>');
                             files.removeClass('selected');
                             file.addClass('selected');
                             let md = this.get('href').split('#')[1] + '.md'
-                            new Request({ link: 'cancel', url: md, onSuccess: Docs.update }).get();
                         }
                     }
                 }));
@@ -86,11 +108,11 @@ const Docs = {
             submenu = $('submenu');
         if (!submenu) submenu = new Element('div').set('id', 'submenu');
 
-        var parsed = Docs.parse(markdown);
+        var parsed = this.parse(markdown);
         wrapper.set('html', parsed.innerHTML);
         document.getElement('#menu-wrapper h3.selected').getParent().grab(submenu.empty());
 
-        var methods = Docs.methods(parsed, submenu);
+        let methods = Docs.methods(parsed, submenu);
         Docs.scroll();
     },
 

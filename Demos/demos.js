@@ -22,7 +22,7 @@ const Demos = {
     },
 
     categories: function(list) {
-        var menu = document.body.getElement('.side-nav');
+        var menu = document.body.getElement('.demos-bloc .side-nav');
         Object.forEach(list, function(group, idx) {
             var category = new Element('h2', { 'class': 'collection-header', 'text': idx }).inject(menu);
             var collection = new Element('div', { 'class': 'collection' }).inject(category, 'after');
@@ -45,19 +45,21 @@ const Demos = {
     },
 
     load: function(folder) {
-        window.demo_path = folder + '/';
+        var path = '/Demos/' + folder + '/';
         var wrapper = $('demos-wrapper');
 
         var demo = new Request.HTML({
-            url: folder + '/index.html',
+            url: path + 'index.html',
             onSuccess: function(tree) {
                 var parsed = Demos.parse(tree, folder);
                 wrapper.getElement('.card-title').set('text', parsed.title);
                 wrapper.getElement('.demos-content').empty().adopt(parsed.content);
                 var assets = $(document.head).getElements('#demo-css, #demo-js');
                 if (assets) assets.dispose();
-                new Element('link', { 'id': 'demo-css', 'type': 'text/css', 'rel': 'stylesheet', 'href': folder + '/demo.css' }).inject(document.head);
-                new Element('script', { 'id': 'demo-js', 'type': 'text/javascript', 'src': folder + '/demo.js' }).inject(document.head);
+                new Element('link', { 'id': 'demo-css', 'type': 'text/css', 'rel': 'stylesheet', 'href': path + 'demo.css' })
+                    .inject(document.head);
+                new Element('script', { 'id': 'demo-js', 'type': 'text/javascript', 'src': path + 'demo.js' })
+                    .inject(document.head);
                 Demos.setInformer(folder);
             }
         });
@@ -88,8 +90,10 @@ const Demos = {
     },
 
     getList: function() {
-        var request = new Request.JSON({ url: '/Demos/demos.json', onComplete: Demos.categories });
-        request.get();
+        new Request.JSON({ url: '/Demos/demos.json' })
+            .get().then(function(data) {
+                Demos.categories(data.json);
+            });
     },
 
     local: function() {
@@ -115,8 +119,9 @@ const Demos = {
         });
 
         new Request({
-            url: folder + '/index.html',
+            url: '/Demos/' + folder + '/index.html',
             onComplete: function(text) {
+                if (!text) return;
                 var body = '';
                 text.replace(/<body[^>]*>([\s\S]*?)<\/body>/gi, function() {
                     body += arguments[1] + '\n';
@@ -127,15 +132,17 @@ const Demos = {
             }
         }).get();
         new Request({
-            url: folder + '/demo.css',
+            url: '/Demos/' + folder + '/demo.css',
             onComplete: function(text) {
+                if (!text) return;
                 informer.css.innerHTML = text;
             }
         }).get();
 
         new Request({
-            url: folder + '/demo.js',
+            url: '/Demos/' + folder + '/demo.js',
             onComplete: function(text) {
+                if (!text) return;
                 informer.js.innerHTML = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
             }
         }).get();
