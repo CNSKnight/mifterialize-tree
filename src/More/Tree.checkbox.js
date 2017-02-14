@@ -2,15 +2,21 @@
  * Tree.Checkbox
  * @changelog - [0.9.2] must now require/import Checkbox and init w/(tree, type)
  */
+const checks = ['checkbox', 'label'];
+const checkboxClick = function(event) {
+    if (!!~checks.indexOf(this.mouse.target)) {
+        return;
+    }
+    this.mouse.node['switch']();
+};
 
-import Node from './Tree.Node';
-
-var Checkbox = {
-    initCheckbox: function(tree, type) {
+var treeCheckbox = {
+    initCheckbox: function(type) {
+        var tree = this;
         tree.checkboxType = type || 'simple';
         tree.dfltState.checked = 'unchecked';
         tree.defaults.hasCheckbox = true;
-        tree.wrapper.addEvent('click', Checkbox.checkboxClick.bind(this));
+        tree.wrapper.addEvent('click', checkboxClick.bind(this));
         if (tree.checkboxType === 'simple') return;
         tree.addEvent('loadChildren', function(node) {
             if (!node) return;
@@ -25,11 +31,6 @@ var Checkbox = {
 
     },
 
-    checkboxClick: function(event) {
-        if (this.mouse.target !== 'checkbox') { return; }
-        this.mouse.node['switch']();
-    },
-
     getChecked: function(includePartially) {
         var checked = [];
         this.root.recursive(function() {
@@ -41,8 +42,7 @@ var Checkbox = {
 
 };
 
-Node.implement({
-
+var nodeCheckbox = {
     'switch': function(state) {
         if (this.state.checked === state || !this.hasCheckbox) return this;
         var type = this.tree.checkboxType;
@@ -103,6 +103,6 @@ Node.implement({
         parent.setParentCheckbox(s);
     }
 
-});
+};
 
-export default Checkbox;
+export { treeCheckbox, nodeCheckbox };

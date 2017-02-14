@@ -2,35 +2,40 @@
  * Node
  */
 
-import Draw from './Tree.Draw';
-import Load from './Tree.Load';
+import draw from './Tree.draw';
+import load from './Tree.load';
 import state from './Tree.state';
-
-var Nodes = {};
+import { nodeTransform } from '../More/Tree.transforms';
+import { nodeCheckbox } from '../More/Tree.checkbox';
+import { nodeRename } from '../More/Tree.renames';
+import { nodeSelection } from './Tree.selection';
 
 var Node = new Class({
     Implements: [Events],
 
     initialize: function(structure, options) {
-        Object.append(this, structure);
-        this.children = [];
-        this.type = options.type || this.tree.dfltType;
-        this.property = options.property || {};
-        this.data = options.data;
-        this.state = Object.append(Object.clone(this.tree.dfltState), options.state);
-        this.$calculate();
-        this.UID = Node.UID++;
-        Nodes[this.UID] = this;
-        var id = this.id;
-        if (id != null) state.ids[id] = this;
-        this.tree.fireEvent('nodeCreate', [this]);
-        this._property = ['id', 'name', 'cls', 'openIcon', 'closeIcon', 'openIconUrl', 'closeIconUrl', 'hidden'];
+        let inst = this;
+        Object.append(inst, structure);
+        inst.children = [];
+        inst.type = options.type || inst.tree.dfltType;
+        inst.property = options.property || {};
+        inst.data = options.data;
+        inst.state = Object.append(Object.clone(inst.tree.dfltState), options.state);
+        inst.$calculate();
+        inst.UID = Node.UID++;
+        console.log(inst.UID);
+        inst.tree.nodes[inst.UID] = inst;
+        var id = inst.id;
+        if (id != null) state.ids[id] = inst;
+        inst.tree.fireEvent('nodeCreate', [inst]);
+        inst._property = ['id', 'name', 'cls', 'openIcon', 'closeIcon', 'openIconUrl', 'closeIconUrl', 'hidden'];
+        this.doms = {};
     },
 
     $calculate: function() {
         Object.append(this, Object.clone(this.tree.defaults));
-        this.type = Array.from(this.type);
-        this.type.each(function(type) {
+        this.type = Array.convert(this.type);
+        this.type.each(type => {
             var props = this.tree.types[type];
             if (props) Object.append(this, props);
         }, this);
@@ -39,7 +44,8 @@ var Node = new Class({
     },
 
     getDOM: function(what) {
-        var node = $(this.tree.DOMidPrefix + this.UID);
+        let id = this.tree.DOMidPrefix + this.UID;
+        var node = $(id);
         if (what === 'node') return node;
         var wrapper = node.getFirst();
         if (what === 'wrapper' || wrapper.hasClass('mt-' + what)) return wrapper;
@@ -73,9 +79,7 @@ var Node = new Class({
         if (this.loadable && !this.state.loaded) {
             if (!this.load_event) {
                 this.load_event = true;
-                this.addEvent('load', function() {
-                    this.toggle();
-                }.bind(this));
+                this.addEvent('load', this.toggle.bind(this));
             }
             return this.load();
         }
@@ -85,13 +89,13 @@ var Node = new Class({
 
     drawToggle: function() {
         this.tree.$getIndex();
-        Draw.update(this);
+        draw.update(this);
     },
 
     recursive: function(fn, args) {
-        args = Array.from(args);
+        args = Array.convert(args);
         if (fn.apply(this, args) !== false) {
-            this.children.each(function(node) {
+            this.children.each(node => {
                 if (node.recursive(fn, args) === false) {
                     return false;
                 }
@@ -109,17 +113,15 @@ var Node = new Class({
     },
 
     isLast: function() {
-        if (this.parentNode === null || this.parentNode.children.getLast() === this) return true;
-        return false;
+        return (!this.parentNode || this.parentNode.children.getLast() === this);
     },
 
     isFirst: function() {
-        if (this.parentNode === null || this.parentNode.children[0] === this) return true;
-        return false;
+        return (!this.parentNode || this.parentNode.children[0] === this);
     },
 
     isRoot: function() {
-        return this.parentNode === null ? true : false;
+        return !!!this.parentNode;
     },
 
     getChildren: function() {
@@ -253,11 +255,11 @@ var Node = new Class({
             default:
         }
         var current = {};
-        this._property.each(function(p) {
+        this._property.each(p => {
             current[p] = this[p];
         }, this);
         this.$calculate();
-        this._property.each(function(p) {
+        this._property.each(p => {
             this.updateProperty(p, current[p], this[p]);
         }, this);
         return this;
@@ -283,7 +285,7 @@ var Node = new Class({
             if (nv) state.ids[nv] = this;
             return this;
         }
-        if (!Draw.isUpdatable(this)) return this;
+        if (!draw.isUpdatable(this)) return this;
         switch (p) {
             case 'name':
                 this.getDOM('name').set('html', nv);
@@ -310,8 +312,8 @@ var Node = new Class({
                 this.tree.$getIndex();
                 var previous = this.getPreviousVisible();
                 var next = this.getNextVisible();
-                [_previous, _next, previous, next, parent, this].each(function(node) {
-                    Draw.update(node);
+                [_previous, _next, previous, next, parent, this].each(node => {
+                    draw.update(node);
                 });
                 return this;
                 // no default
@@ -320,10 +322,7 @@ var Node = new Class({
     },
 
     updateOpenState: function() {
-        if (this.state.open) {
-            this.state.open = false;
-            this.toggle();
-        }
+        this.state.open && (this.state.open = false && this.toggle());
     },
 
     load: function(options) {
@@ -333,11 +332,11 @@ var Node = new Class({
         var self = this;
 
         function success(json) {
-            Load.children(json, self, self.tree);
+            load.children(json, self, self.tree);
             delete self.$loading;
             self.state.loaded = true;
             self.removeType('loader');
-            Draw.update(self);
+            draw.update(self);
             self.fireEvent('load');
             self.tree.fireEvent('loadNode', self);
             return self;
@@ -355,6 +354,8 @@ var Node = new Class({
     }
 
 });
+
+Node.implement(Object.assign({}, nodeTransform, nodeCheckbox, nodeRename, nodeSelection));
 
 Node.UID = 0;
 

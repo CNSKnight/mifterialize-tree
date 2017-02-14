@@ -3,7 +3,7 @@
  */
 import Node from './Tree.Node';
 
-var Load = {
+var load = {
     children: function(children, parent, tree) {
         var i, l;
         var subChildrens = [];
@@ -11,7 +11,7 @@ var Load = {
             var child = children[i];
             var node = new Node({
                 tree: tree,
-                parentNode: parent || undefined
+                parentNode: parent
             }, child);
             if (tree.forest || parent) {
                 parent.children.unshift(node);
@@ -25,7 +25,7 @@ var Load = {
         }
         for (i = 0, l = subChildrens.length; i < l; i++) {
             var sub = subChildrens[i];
-            arguments.callee(sub.children, sub.parent, tree);
+            load.children(sub.children, sub.parent, tree);
         }
         if (parent) parent.state.loaded = true;
         tree.fireEvent('loadChildren', parent);
@@ -33,4 +33,4 @@ var Load = {
 
 };
 
-export default Load;
+export default load;

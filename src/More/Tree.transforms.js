@@ -1,11 +1,10 @@
 /**
  * Transform
  */
-import Tree from '../Core/Tree';
-import Node from '../Core/Node';
-import Draw from '../Core/Draw';
+import draw from '../Core/Tree.draw';
+import state from '../Core/Tree.state';
 
-Node.implement({
+var nodeTransform = {
     inject: function(node, where, element) { //element - internal property
         where = where || 'inside';
         var parent = this.parentNode;
@@ -49,12 +48,13 @@ Node.implement({
                     node.fireEvent('drawRoot');
                 }
                 break;
+            default:
         }
         var tree = node.tree || node;
         if (this === this.tree.root) {
             this.tree.root = false;
         }
-        if (this.tree != tree) {
+        if (this.tree !== tree) {
             var oldTree = this.tree;
             this.recursive(function() {
                 this.tree = tree;
@@ -63,9 +63,9 @@ Node.implement({
         tree.fireEvent('structureChange', [this, node, where, type]);
         tree.$getIndex();
         if (oldTree) oldTree.$getIndex();
-        Draw.inject(this, element);
+        draw.inject(this, element);
         [node, this, parent, previousVisible, getPreviousVisible(this)].each(function(node) {
-            Draw.update(node);
+            draw.update(node);
         });
         return this;
     },
@@ -104,7 +104,7 @@ Node.implement({
             parentNode: null,
             tree: node.tree
         });
-        return nodeCopy.inject(node, where, Draw.node(nodeCopy));
+        return nodeCopy.inject(node, where, draw.node(nodeCopy));
     },
 
     remove: function() {
@@ -120,18 +120,18 @@ Node.implement({
         this.tree.selected = false;
         this.getDOM('node').destroy();
         this.tree.$getIndex();
-        Draw.update(parent);
-        Draw.update(previousVisible);
+        draw.update(parent);
+        draw.update(previousVisible);
         this.recursive(function() {
-            if (this.id) delete Mif.ids[this.id];
+            if (this.id) delete state.ids[this.id];
         });
         this.tree.mouse.node = false;
         this.tree.updateHover();
     }
-});
+};
 
 
-Tree.implement({
+var treeTransform = {
     move: function(from, to, where) {
         if (from.inject(to, where)) {
             this.fireEvent('move', [from, to, where]);
@@ -159,8 +159,10 @@ Tree.implement({
                 tree: this
             }, node);
         };
-        node.inject(current, where, Draw.node(node));
+        node.inject(current, where, draw.node(node));
         this.fireEvent('add', [node, current, where]);
         return this;
     }
-});
+};
+
+export { nodeTransform, treeTransform };

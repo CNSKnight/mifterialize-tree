@@ -1,14 +1,20 @@
 /**
- * CNSKnight Mif Tree
+ * CNSKnight Mifterialize (Formerly Mif) Tree
  */
 import Tree from './Core/Tree';
-// [Browser, Class, Events, Options, Cookie, Drag, Element]
-const cmt = {
-    ids: {},
-    id: function(id) {
-        return cmt.ids[id];
-    },
+
+import Trag from './More/Tree.Trag';
+import KeyNav from './More/Tree.KeyNav';
+import CookieStorage from './More/Tree.CookieStorage';
+
+Tree.Trag = Tree.Drag = Trag;
+Tree.KeyNav = KeyNav;
+Tree.CookieStorage = CookieStorage;
+
+const CMT = {
+    // @note id and ids have been moved to CMT.state
     Tree: Tree
 };
-window.cmt = window.Mif = cmt;
-export default cmt;
+// Mif is the legacy object name and kept here in the demo App for use by the demos.js's
+window.CMT = window.Mif = CMT;
+export default CMT;

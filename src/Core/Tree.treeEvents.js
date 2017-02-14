@@ -4,19 +4,23 @@
 
 import state from './Tree.state';
 
+var toBinds = {
+
+};
+
 var treeEvents = {
     bound: function() {
-        Array.each(arguments, function(name) {
+        Array.each(arguments, name => {
             this.bound[name] = this[name].bind(this);
-        }, this);
+        });
     },
 
     events: function() {
         this.bound(
+            'preventDefault',
             'mouse',
             'mouseleave',
             'mousedown',
-            'preventDefault',
             'toggleClick',
             'toggleDblclick',
             'focus',
@@ -26,14 +30,14 @@ var treeEvents = {
         );
 
         this.wrapper.addEvents({
+            selectstart: this.bound.preventDefault,
             mousemove: this.bound.mouse,
             mouseover: this.bound.mouse,
             mouseout: this.bound.mouse,
             mouseleave: this.bound.mouseleave,
             mousedown: this.bound.mousedown,
             click: this.bound.toggleClick,
-            dblclick: this.bound.toggleDblclick,
-            selectstart: this.bound.preventDefault
+            dblclick: this.bound.toggleDblclick
         });
 
         this.container.addEvent('click',
@@ -73,6 +77,10 @@ var treeEvents = {
         return this.fireEvent('blur');
     },
 
+    preventDefault: function(event) {
+        event.preventDefault();
+    },
+
     mousedown: function(e) {
         if (e.rightClick) return;
         e.preventDefault();
@@ -102,8 +110,9 @@ var treeEvents = {
         while (!(/mt-/).test(target.className)) {
             target = target.parentNode;
         }
-        var test = target.className.match(/mt-(gadjet)-[^n]|mt-(icon)|mt-(name)|mt-(checkbox)/);
-        if (!test) {
+        let testr = target.className || target.tagName;
+        var machez = testr.match(/mt-gadget-(none)|mt-(gadjet)|mt-(icon)|mt-(name)|mt-(checkbox)/);
+        if (!machez) {
             var y = this.mouse.coords.y;
             if (y === -1 || !this.$index) {
                 node = false;
@@ -116,13 +125,14 @@ var treeEvents = {
             };
         }
         for (var i = 5; i > 0; i--) {
-            if (test[i]) {
-                var type = test[i];
+            if (machez[i]) {
+                var type = machez[i];
                 break;
             }
         }
         return {
-            node: Tree.Nodes[target.getAttribute('uid')],
+            // .Tree > this
+            node: this.nodes[target.getAttribute('uid')],
             target: type
         };
     },

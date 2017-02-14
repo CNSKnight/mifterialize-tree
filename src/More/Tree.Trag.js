@@ -1,12 +1,12 @@
-/*
-Trag
-*/
-import Node from '../Core/Node';
-import Draw from '../Core/Draw';
-import TragElement from './TragElement';
+/**
+ * Tree.Trag.js
+ */
+import Node from '../Core/Tree.Node';
+import Draw from '../Core/Tree.draw';
+import TragElement from './Tree.TragElement';
 
 var Trag = new Class({
-    Implements: [Events, Options, Element],
+    Implements: [Events, Options],
     Extends: Drag,
 
     options: {
@@ -21,7 +21,6 @@ var Trag = new Class({
         startPlace: ['icon', 'name'],
         allowContainerDrop: true
     },
-
     initialize: function(tree, options) {
         tree.drag = this;
         this.setOptions(options);
@@ -102,7 +101,7 @@ var Trag = new Class({
     },
 
     addToGroups: function(groups) {
-        groups = Array.from(groups);
+        groups = Array.convert(groups);
         this.groups.combine(groups);
         groups.each(function(group) {
             Trag.groups[group] = (Trag.groups[group] || []).include(this);
@@ -110,7 +109,7 @@ var Trag = new Class({
     },
 
     setDroppables: function(droppables) {
-        this.droppables.combine(Array.from(droppables));
+        this.droppables.combine(Array.convert(droppables));
         this.groups.each(function(group) {
             this.droppables.combine(Trag.groups[group]);
         }, this);
@@ -232,7 +231,7 @@ var Trag = new Class({
 
         var target = this.tree.mouse.target;
         if (!target) return;
-        this.current = Array.from(this.options.startPlace).contains(target) ? this.tree.mouse.node : false;
+        this.current = Array.convert(this.options.startPlace).contains(target) ? this.tree.mouse.node : false;
         if (!this.current || this.current.dragDisabled) {
             return;
         }
@@ -298,7 +297,7 @@ var Trag = new Class({
     },
 
     addGhost: function() {
-        var wrapper = this.current.getDOM('wrapper');
+        //var wrapper = this.current.getDOM('wrapper');
         var ghost = new Element('span').addClass('mt-ghost');
         ghost.adopt(Draw.node(this.current).getFirst())
             .inject(document.body).addClass('mt-ghost-notAllowed').setStyle('position', 'absolute');
@@ -373,9 +372,7 @@ var Trag = new Class({
     },
 
     emptydrop: function() {
-        var current = this.current,
-            target = this.target,
-            where = this.where;
+        var current = this.current;
         var scroll = this.tree.scroll;
         var complete = function() {
             scroll.removeEvent('complete', complete);

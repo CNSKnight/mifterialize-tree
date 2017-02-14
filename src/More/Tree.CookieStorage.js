@@ -1,10 +1,9 @@
 /**
  * Tree.CookieStorage
  */
-import state from './Tree.state';
+import state from '../Core/Tree.state';
 
 var CookieStorage = new Class({
-
     Implements: [Options],
 
     options: {

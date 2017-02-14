@@ -1,7 +1,7 @@
 /**
  * Trag.Element.js
  */
-import Trag from './Trag';
+import Trag from './Tree.Trag';
 
 var TragElement = new Class({
     Implements: [Options, Events],

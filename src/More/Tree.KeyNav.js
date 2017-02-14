@@ -66,6 +66,7 @@ var KeyNav = new Class({
                     this.goPageDown(current);
                     event.stop();
                     break;
+                default:
             }
         }
         tree.scrollTo(tree.selected);
@@ -133,7 +134,7 @@ var KeyNav = new Class({
 
 });
 
-DOMEvent.defineKeys({
+window.DOMEvent.defineKeys({
     34: 'pgdown',
     33: 'pgup',
     36: 'home',

@@ -1,10 +1,24 @@
 /**
- * Tree.Rename
+ * Tree.renames
  */
-import Tree from '../Core/Tree';
-import Node from '../Core/Node';
 
-Tree.implement({
+const rename = {
+    autoExpand: function(input) {
+        var span = new Element('span').addClass('mt-rename').setStyles({
+            position: 'absolute',
+            left: -2000,
+            top: 0,
+            padding: 0
+        }).inject(document.body);
+        input.addEvent('keydown', function(event) {
+            (function() {
+                input.setStyle('width', Math.max(20, span.set('html', input.value.replace(/\s/g, '&nbsp;')).offsetWidth + 15));
+            }).delay(10);
+        });
+    }
+};
+
+var treeRename = {
     attachRenameEvents: function() {
         this.wrapper.addEvents({
             click: function(event) {
@@ -39,7 +53,8 @@ Tree.implement({
             this.input.addEvent('focus', function() { this.select(); }).addEvent('click', function(event) {
                 event.stop();
             });
-            Mif.Tree.Rename.autoExpand(this.input);
+
+            rename.autoExpand(this.input);
         }
         return this.input;
     },
@@ -92,29 +107,13 @@ Tree.implement({
         this.select(this.renameNode);
     }
 
-});
+};
 
-Node.implement({
+var nodeRename = {
     rename: function() {
         if (this.property.renameDenied) return;
         this.tree.startRename(this);
     }
-});
-
-var Rename = {
-    autoExpand: function(input) {
-        var span = new Element('span').addClass('mt-rename').setStyles({
-            position: 'absolute',
-            left: -2000,
-            top: 0,
-            padding: 0
-        }).inject(document.body);
-        input.addEvent('keydown', function(event) {
-            (function() {
-                input.setStyle('width', Math.max(20, span.set('html', input.value.replace(/\s/g, '&nbsp;')).offsetWidth + 15));
-            }).delay(10);
-        });
-    }
 };
 
-export default Rename;
+export { treeRename, nodeRename };

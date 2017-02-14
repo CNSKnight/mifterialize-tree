@@ -1,11 +1,11 @@
 /**
- * Draw
+ * Tree.draw.js
  */
-var Draw = {
+var draw = {
     getCheckbox(node) {
         if (node.state.checked != null) {
             if (!node.hasCheckbox) node.state.checked = 'nochecked';
-            return '<span class="mt-checkbox mt-node-' + node.state.checked + '" uid="' + node.UID + '">' + Draw.zeroSpace + '</span>';
+            return '<span class="mt-checkbox mt-node-' + node.state.checked + '" uid="' + node.UID + '">' + draw.zeroSpace + '</span>';
         }
         return '';
     },
@@ -16,17 +16,17 @@ var Draw = {
         var hidn = node.hidden ? 'hidden' : '';
         var icon = '';
         if (node.tree.options.showsOpenCloseIcons === undefined || node.tree.options.showsOpenCloseIcons) {
-            icon = '<span class="mt-icon ' + (node.closeIconUrl ? node.closeIconUrl : node.closeIcon) + '" uid="' + node.UID + '">' + Draw.zeroSpace + '</span>';
+            icon = '<span class="mt-icon ' + (node.closeIconUrl ? node.closeIconUrl : node.closeIcon) + '" uid="' + node.UID + '">' + draw.zeroSpace + '</span>';
         }
         return [
             '<div class="mt-node ' + isLast + ' ' + hidn + '" id="' + prefix + node.UID + '">',
             // the wrapper needs to be here to segment the node from its children as a sibling
             '<span class="mt-node-wrapper ', node.cls, (node.state.selected ? ' mt-node-selected' : ''), '" uid="', node.UID, '">',
             // this one controls the branch visibility
-            '<span class="mt-gadjet mt-gadjet-' + node.getGadjetType() + '" uid="' + node.UID + '">' + Draw.zeroSpace + '</span>',
+            '<span class="mt-gadjet mt-gadjet-' + node.getGadjetType() + '" uid="' + node.UID + '">' + draw.zeroSpace + '</span>',
             icon,
             // checkbox now goes inside its label
-            '<label uid="' + node.UID + '">' + this.getCheckbox(node) + node.name + '</label>',
+            '<label class="mt-name" uid="' + node.UID + '">' + this.getCheckbox(node) + node.name + '</label>',
             '</span>',
             '<div class="mt-children"></div>',
             '</div>'
@@ -39,6 +39,7 @@ var Draw = {
         var html = [];
         var children = parent.children;
         for (var i = 0, l = children.length; i < l; i++) {
+            console.log(children[i].UID);
             html = html.concat(this.getHTML(children[i]));
         }
         container = container || parent.getDOM('children');
@@ -55,7 +56,7 @@ var Draw = {
 
     forestRoot: function(tree) {
         var container = new Element('div').addClass('mt-children-root').inject(tree.wrapper);
-        Draw.children(tree.root, container);
+        draw.children(tree.root, container);
     },
 
     node: function(node) {
@@ -91,7 +92,7 @@ var Draw = {
         if (node.$loading) return null;
         var children = node.getDOM('children');
         if (node.isOpen()) {
-            if (!node.$draw) Draw.children(node);
+            if (!node.$draw) draw.children(node);
             children.style.display = 'block';
         } else {
             children.style.display = 'none';
@@ -121,6 +122,6 @@ var Draw = {
 
 };
 
-Draw.zeroSpace = Browser.ie ? '&shy;' : (Browser.safari | Browser.chrome ? '&#8203' : '');
+draw.zeroSpace = Browser.ie ? '&shy;' : (Browser.safari | Browser.chrome ? '&#8203' : '');
 
-export default Draw;
+export default draw;

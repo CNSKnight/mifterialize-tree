@@ -1,36 +1,34 @@
 /**
  * Selection
  */
-import Node from './Tree.Node';
-import Draw from './Tree.Draw';
+import draw from './Tree.draw';
 
-var Selection = {
+const targets = ['icon', 'name', 'node'];
 
-    initSelection: function(tree) {
+var treeSelection = {
+    initSelection: function() {
+        var tree = this;
         tree.defaults.selectClass = '';
-        tree.wrapper.addEvent('mousedown', function(e) {
-            Selection.attachSelect.call(tree, e);
-        });
+        tree.wrapper.addEvent('mousedown', treeSelection.attachSelect.bind(tree));
     },
 
-    attachSelect: function(event) {
-        if (!['icon', 'name', 'node'].contains(this.mouse.target)) return;
-        var node = this.mouse.node;
-        if (!node) return;
-        this.select(node);
+    attachSelect: function(e) {
+        if (!!~targets.indexOf(this.mouse.target) && this.mouse.node) {
+            this.select(this.mouse.node);
+        }
     },
 
     select: function(node) {
         if (!node) return this;
         var current = this.selected;
-        if (current === node) return this;
-        if (current) {
+        if (current === node) {
             current.select(false);
             this.fireEvent('unSelect', [current]).fireEvent('selectChange', [current, false]);
+        } else {
+            this.selected = node;
+            node.select(true);
+            this.fireEvent('select', [node]).fireEvent('selectChange', [node, true]);
         }
-        this.selected = node;
-        node.select(true);
-        this.fireEvent('select', [node]).fireEvent('selectChange', [node, true]);
         return this;
     },
 
@@ -53,10 +51,12 @@ var Selection = {
 
 };
 
-Node.implement({
+var nodeSelection = {
     select: function(state) {
         this.state.selected = state;
-        if (!Draw.isUpdatable(this)) return;
+        if (!draw.isUpdatable(this)) {
+            return;
+        }
         var wrapper = this.getDOM('wrapper');
         wrapper[(state ? 'add' : 'remove') + 'Class'](this.selectClass || 'mt-node-selected');
     },
@@ -64,6 +64,6 @@ Node.implement({
     isSelected: function() {
         return this.state.selected;
     }
-});
+};
 
-export default Selection;
+export { treeSelection, nodeSelection };

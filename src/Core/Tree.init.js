@@ -4,10 +4,11 @@
 
 import state from './Tree.state';
 import load from './Tree.load';
+import draw from './Tree.draw';
 
 import Node from './Tree.Node';
 
-var treeInit = {
+var init = {
     options: {
         types: {},
         forest: false,
@@ -21,8 +22,10 @@ var treeInit = {
     initialize: function(options) {
         this.setOptions(options);
         Object.append(this, {
+            name: 'Steeve',
             types: this.options.types,
             forest: this.options.forest,
+            nodes: [],
             animateScroll: this.options.animateScroll,
             dfltType: this.options.dfltType,
             height: this.options.height,
@@ -109,4 +112,4 @@ var treeInit = {
     }
 };
 
-export default treeInit;
+export default init;
