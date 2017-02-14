@@ -74,7 +74,7 @@ const Demos = {
         fixes.each(function(fix) {
             var type = (fix.get('src')) ? 'src' : 'href';
 
-            if (Browser.Engine.trident && type == 'src') {
+            if (Browser.Engine && Browser.Engine.trident && type == 'src') {
                 var split = window.location.pathname.split('/').slice(0, -1).join('/') + '/';
                 dir = fix.get(type).replace(split, split + folder + '/');
                 fix.set(type, dir);
@@ -82,7 +82,7 @@ const Demos = {
         });
         var title = temp.getElement('h1');
         var parsed = {
-            title: title.get('text'),
+            title: title ? title.get('text') : '-no-title-',
         };
         title.destroy();
         parsed.content = temp;
