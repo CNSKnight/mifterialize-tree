@@ -23,7 +23,6 @@ var Node = new Class({
         inst.state = Object.append(Object.clone(inst.tree.dfltState), options.state);
         inst.$calculate();
         inst.UID = Node.UID++;
-        console.log(inst.UID);
         inst.tree.nodes[inst.UID] = inst;
         var id = inst.id;
         if (id != null) state.ids[id] = inst;

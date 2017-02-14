@@ -39,7 +39,6 @@ var draw = {
         var html = [];
         var children = parent.children;
         for (var i = 0, l = children.length; i < l; i++) {
-            console.log(children[i].UID);
             html = html.concat(this.getHTML(children[i]));
         }
         container = container || parent.getDOM('children');
