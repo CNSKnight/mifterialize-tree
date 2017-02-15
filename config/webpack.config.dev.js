@@ -204,7 +204,8 @@ module.exports = {
         Drag: 'Drag',
         Events: 'Events',
         Fx: 'Fx',
-        Options: 'Options'
+        Options: 'Options',
+        DOMEvent: 'DOMEvent'
 
     }
 

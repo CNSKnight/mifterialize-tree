@@ -245,5 +245,20 @@ module.exports = {
         fs: 'empty',
         net: 'empty',
         tls: 'empty'
+    },
+
+    externals: {
+        MooTools: 'MooTools',
+        $: 'document.id',
+        'document.id': 'document.id',
+        Browser: 'Browser',
+        Class: 'Class',
+        Cookie: 'Cookie',
+        Drag: 'Drag',
+        Events: 'Events',
+        Fx: 'Fx',
+        Options: 'Options',
+        DOMEvent: 'DOMEvent'
+
     }
 };
