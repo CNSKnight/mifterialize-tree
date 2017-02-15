@@ -121,20 +121,22 @@
 /**
 ================SELECTION=================
 */
-.mt-node-wrapper.mt-node-selected {
-  outline: 3px dashed rgba(255, 0, 0, 0.7);
-  outline-offset: .2em; }
-  .mt-node-wrapper.mt-node-selected label {
-    font-style: italic; }
-  .mt-node-wrapper.mt-node-selected label:hover {
-    color: rgba(255, 0, 0, 0.7); }
-
-.mt-highlighter {
-  height: 18px;
-  overflow: hidden;
-  width: 100%;
-  background: #b64553;
-  position: absolute; }
+.mt-node-wrapper {
+  margin-bottom: .2em;
+  background-color: whitesmoke; }
+  .mt-node-wrapper.mt-node-selected {
+    outline: 3px dashed rgba(255, 0, 0, 0.5);
+    outline-offset: .05em; }
+    .mt-node-wrapper.mt-node-selected label {
+      font-style: italic; }
+    .mt-node-wrapper.mt-node-selected label:hover {
+      color: rgba(255, 0, 0, 0.7); }
+  .mt-node-wrapper .mt-highlighter {
+    height: 18px;
+    overflow: hidden;
+    width: 100%;
+    background: #b64553;
+    position: absolute; }
 
 /**
 ===============D'n'D=================

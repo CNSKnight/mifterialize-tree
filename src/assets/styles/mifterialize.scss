@@ -51,8 +51,6 @@
     color: blue;
 }
 
-.mit-tree-wrapper .mt-node-wrapper {}
-
 
 /**
 ================GADJETS=================
@@ -124,23 +122,26 @@
 ================SELECTION=================
 */
 
-.mt-node-wrapper.mt-node-selected {
-    outline: 3px dashed rgba(255, 0, 0, .7);
-    outline-offset: .2em;
-    label {
-        font-style: italic;
+.mt-node-wrapper {
+    margin-bottom: .2em;
+    background-color: rgb(245, 245, 245);
+    &.mt-node-selected {
+        outline: 3px dashed rgba(255, 0, 0, .5);
+        outline-offset: .05em;
+        label {
+            font-style: italic;
+        }
+        label:hover {
+            color: rgba(255, 0, 0, .7);
+        }
     }
-    label:hover {
-        color: rgba(255, 0, 0, .7);
+    .mt-highlighter {
+        height: 18px;
+        overflow: hidden;
+        width: 100%;
+        background: #b64553;
+        position: absolute;
     }
-}
-
-.mt-highlighter {
-    height: 18px;
-    overflow: hidden;
-    width: 100%;
-    background: #b64553;
-    position: absolute;
 }
 
 

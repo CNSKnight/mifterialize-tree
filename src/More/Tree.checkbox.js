@@ -1,10 +1,10 @@
 /**
  * Tree.Checkbox
- * @changelog - [0.9.2] must now require/import Checkbox and init w/(tree, type)
+ * @changelog - [0.9.2] must now require/import checkbox and init w/(tree, type)
  */
-const checks = ['checkbox', 'label'];
+const checks = ['checkbox', 'name'];
 const checkboxClick = function(event) {
-    if (!!~checks.indexOf(this.mouse.target)) {
+    if (!~checks.indexOf(this.mouse.target)) {
         return;
     }
     this.mouse.node['switch']();
