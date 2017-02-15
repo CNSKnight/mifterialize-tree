@@ -1,0 +1,68 @@
+#tree-container {
+    height: 300px;
+    position: relative;
+    border: solid 1px #c7c7c7;
+}
+
+.mt-wrapper {
+    font-family: verdana;
+    font-size: 11px;
+}
+
+.mt-name {
+    margin-left: 0;
+    padding-left: 4px;
+}
+
+.dom-array {
+    color: #6f6893;
+    font-weight: bold;
+}
+
+.dom-object {
+    color: #000;
+    font-weight: bold;
+}
+
+.dom-string {
+    color: #f35454;
+    font-weight: bold;
+}
+
+.dom-number {
+    color: #23268d;
+    font-weight: bold;
+}
+
+.dom-function {
+    color: #409d4b;
+    font-weight: bold;
+}
+
+.mt-empty-icon {
+    padding-right: 0;
+}
+
+.mt-hover-gadjet .mt-name,
+.mt-hover-name .mt-name,
+.mt-hover-icon .mt-name {
+    color: blue;
+    text-decoration: underline;
+}
+
+
+/**
+===============RENAME=================
+*/
+
+.mt-rename {
+    display: inline;
+    line-height: 14px;
+    height: 14px;
+    cursor: default;
+    overflow: hidden;
+    font-family: sans-serif;
+    font-size: 11px;
+    padding: 1px 0;
+    border: solid 1px black;
+}

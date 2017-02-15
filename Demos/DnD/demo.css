@@ -1,0 +1,49 @@
+.container {
+    height: 250px;
+    position: relative;
+    border: solid 1px #cecece;
+    float: left;
+    margin-left: 10px;
+}
+
+#drop_container {
+    position: relative;
+    height: 230px;
+    background: #faf9c7;
+    float: left;
+    margin-left: 20px;
+    padding: 10px;
+    overflow: auto;
+}
+
+#drop_container ul {
+    margin-left: 20px;
+}
+
+#informer {
+    clear: both;
+}
+
+#informer p {
+    font-weight: bold;
+}
+
+#informer span {
+    font-weight: normal;
+}
+
+
+/**
+===============RENAME=================
+*/
+
+.mt-rename {
+    display: inline;
+    line-height: 14px;
+    cursor: default;
+    overflow: hidden;
+    font-family: sans-serif;
+    font-size: 11px;
+    padding: 1px 0;
+    border: solid 1px black;
+}

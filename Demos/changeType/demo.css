@@ -1,0 +1,70 @@
+#tree-container {
+    /*height: 200px; */
+    position: relative;
+}
+
+#log {
+    white-space: nowrap;
+}
+
+ol {
+    margin-left: 20px;
+}
+
+fieldset {
+    width: 200px;
+    padding: 20px;
+}
+
+fieldset div {
+    margin-top: 10px;
+    height: 20px;
+}
+
+label {
+    width: 60px;
+    display: block;
+    float: left;
+    font-size: 14px;
+}
+
+input,
+select {
+    display: block;
+    float: left;
+    width: 100px;
+}
+
+input {
+    width: 96px;
+}
+
+.clear {
+    clear: both;
+}
+
+#submit_button {
+    width: 160px;
+}
+
+#submit_button input {
+    float: right;
+    width: 100px;
+}
+
+
+/**
+===============RENAME=================
+*/
+
+.mt-rename {
+    display: inline;
+    line-height: 14px;
+    height: 14px;
+    cursor: default;
+    overflow: hidden;
+    font-family: sans-serif;
+    font-size: 11px;
+    padding: 1px 0;
+    border: solid 1px black;
+}

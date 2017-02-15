@@ -1,0 +1,41 @@
+h3.log {
+    margin: 1em 0;
+}
+
+#log {
+    white-space: nowrap;
+    /* width: 300px; */
+    ;
+    /*height: 200px; */
+    border: solid 1px #cfcad2;
+}
+
+ol#log li {
+    margin-left: 30px;
+}
+
+ol#log {
+    overflow: auto;
+}
+
+#tree-container {
+    /*height: 200px; */
+    /* width: 300px; */
+    position: relative;
+}
+
+
+/**
+===============RENAME=================
+*/
+
+.mt-rename {
+    display: inline;
+    line-height: 14px;
+    cursor: default;
+    overflow: hidden;
+    font-family: sans-serif;
+    font-size: 11px;
+    padding: 1px 0;
+    border: solid 1px black;
+}

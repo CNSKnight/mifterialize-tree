@@ -1,0 +1,171 @@
+window.addEvent('domready',function(){
+
+	Mif.Tree.Node.implement({
+	
+		switchSelect: function(state){
+			this.tree[state ? 'select' : 'unselect'](this);
+		}
+		
+	});
+
+	tree = new Mif.Tree({
+		container: $('tree-container'),// tree container
+		initialize: function(){
+			this.initCheckbox('simple');
+			var storage=new Mif.Tree.CookieStorage(this);
+			var switchStorage=new Mif.Tree.CookieStorage(this, {event: 'switch', action: 'switch'});
+			var selectStorage=new Mif.Tree.CookieStorage(this, {event: 'selectChange', action: 'switchSelect'});
+			this.addEvent('load', function(){
+				storage.restore();
+				switchStorage.restore();
+				selectStorage.restore();
+			}).addEvent('loadChildren', function(){
+				storage.restore();
+				switchStorage.restore();
+				selectStorage.restore();
+			});
+		},
+		types: {// node types
+			folder:{
+				openIcon: 'mt-open-icon',//css class open icon
+				closeIcon: 'mt-close-icon'// css class close icon
+			}
+		},
+		dfltType:'folder',//default node type
+		height: 18//node height
+	});
+	
+	var children=[
+		{
+			"property": {
+				"name": "cnode1",
+				"id": "cnode1"
+			}
+		},
+		{
+			"property": {
+				"name": "cnode2",
+				"id": "cnode2"
+			},
+			"children":	[
+				{
+					"property":{
+						"name": "cnodeX",
+						"id": "cnodeXXXX"
+					}
+				},
+				{
+					"property":{
+						"name": "cnodeY",
+						"id": "cnodeY"
+					},
+					"children":[
+						{
+							"property":{
+								"name": "cnodeZ",
+								"id": "cnodeZ"
+							}
+						},
+						{
+							"property":{
+								"name": "cnodeL",
+								"id": "cnodeL"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"property":{
+				"name": "cnode3",
+				"id": "cnode3"
+			}
+		}
+	];
+
+	var json=[
+		{
+			"property": {
+				"name": "root",
+				"id": "root"
+			},
+			"children": [
+				{
+					"property": {
+						"name": "node1",
+						"id": "node1"
+					}
+				},
+				{
+					"property": {
+						"name": "node2",
+						"id": "node2"
+					},
+					"children":[
+						{
+							"property": {
+								"name": "node2.1",
+								"id": "node2.1"
+							}
+						},
+						{
+							"property": {
+								"name": "node2.2",
+								"id": "node2.2"
+							},
+							"children":[
+								{
+									"property": {
+										"name": "node2.2.1",
+										"id": "node2.2.1"
+									}
+								},
+								{
+									"property": {
+										"name": "node2.2.2",
+										"id": "node2.2.2"
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"property": {
+						"name": "node4",
+						"id": "node4"
+					},
+					"children":	[
+						{
+							"property":{
+								"name": "nodeX",
+								"id": "nodeXXXX"
+							}
+						},
+						{
+							"property":{
+								"name": "nodeY",
+								"id": "nodeY"
+							}
+						}
+					]
+				},
+				{
+					"property": {
+						"name": "node3 loadable",
+						"id": "node3",
+						"loadable": true,
+						"loadOptions": {json: children}
+					}
+				}
+			]
+		}
+	];
+	
+	// load tree from json.
+	tree.load({
+		json: json
+	});
+	
+});
