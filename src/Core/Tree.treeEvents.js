@@ -4,19 +4,15 @@
 
 import state from './Tree.state';
 
-var toBinds = {
-
-};
-
 var treeEvents = {
-    bound: function() {
-        Array.each(arguments, name => {
+    bound: function(toBinds) {
+        Array.each(toBinds, name => {
             this.bound[name] = this[name].bind(this);
         });
     },
 
     events: function() {
-        this.bound(
+        this.bound([
             'preventDefault',
             'mouse',
             'mouseleave',
@@ -27,7 +23,7 @@ var treeEvents = {
             'blurOnClick',
             'keyDown',
             'keyUp'
-        );
+        ]);
 
         this.wrapper.addEvents({
             selectstart: this.bound.preventDefault,
