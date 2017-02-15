@@ -1,50 +1,50 @@
-window.addEvent('domready',function(){
-	tree = new Mif.Tree({
-		container: $('tree-container'),
-		types: {
-			folder:{
-				openIcon: 'mt-open-icon',
-				closeIcon: 'mt-close-icon'
-			}
-		},
-		dfltType:'folder',
-		height:20
-	})
-	.load({
-		url: '../assets/files/simpleTree.json'
-	})
-	.addEvent('load', function(){
-		this.root.recursive(function(){
-			this.toggle();
-		});
-		this.select(this.root);
-	});
-	
-	
-	$('rename').addEvent('click', function(){
-		var node=tree.getSelected();
-	    if(!node) return;
-	    node.rename();
-	});
-	
-	
-	$('remove').addEvent('click', function(){
-		var node=tree.getSelected();
-	    if(!node) return;
-	    node.remove();
-	});	
+window.addEvent('domready', function() {
+    new Mif.Tree({
+            container: $('tree-container'),
+            types: {
+                folder: {
+                    openIcon: 'mt-open-icon',
+                    closeIcon: 'mt-close-icon'
+                }
+            },
+            dfltType: 'folder',
+            height: 20
+        })
+        .load({
+            url: '/data/simpleTree.json'
+        })
+        .addEvent('load', function() {
+            this.root.recursive(function() {
+                this.toggle();
+            });
+            this.select(this.root);
+        });
 
 
-	$('protect').addEvent('click', function(){
-		var node=tree.getSelected();
-	    if(!node) return;
-	    node.set({
-			property:{
-				renameDenied: node.property.renameDenied ? false : true, 
-				removeDenied: node.property.removeDenied ? false : true,
-				name: node.property.renameDenied ? node.property.name.replace(/ protected/, '') : node.property.name+' protected'
-			}
-		});
-	});	
-		
+    $('rename').addEvent('click', function() {
+        var node = tree.getSelected();
+        if (!node) return;
+        node.rename();
+    });
+
+
+    $('remove').addEvent('click', function() {
+        var node = tree.getSelected();
+        if (!node) return;
+        node.remove();
+    });
+
+
+    $('protect').addEvent('click', function() {
+        var node = tree.getSelected();
+        if (!node) return;
+        node.set({
+            property: {
+                renameDenied: node.property.renameDenied ? false : true,
+                removeDenied: node.property.removeDenied ? false : true,
+                name: node.property.renameDenied ? node.property.name.replace(/ protected/, '') : node.property.name + ' protected'
+            }
+        });
+    });
+
 });

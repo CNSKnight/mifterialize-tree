@@ -1,0 +1,1 @@
+assets/ is the legacy "Build" structure

@@ -1,18 +1,10 @@
 #tree-container {
-    height: 400px;
-    width: 250px;
-    position: relative;
-    float: left;
     border: solid 1px gray;
 }
 
 #info {
-    float: left;
-    width: 250px;
     border: solid 1px gray;
-    height: 400px;
-    overflow: auto;
-    margin-left: 5px;
+    min-height: 300px;
 }
 
 
@@ -23,7 +15,6 @@
 .mt-rename {
     display: inline;
     line-height: 14px;
-    height: 14px;
     cursor: default;
     overflow: hidden;
     font-family: sans-serif;

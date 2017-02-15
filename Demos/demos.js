@@ -84,7 +84,7 @@ const Demos = {
         var parsed = {
             title: title ? title.get('text') : '-no-title-',
         };
-        title.destroy();
+        title && title.destroy();
         parsed.content = temp;
         return parsed;
     },
