@@ -88,7 +88,7 @@ var Demos = {
     },
 
     getList: function() {
-        var request = new Request.JSON({ url: 'demos.json', onComplete: Demos.categories });
+        var request = new Request.JSON({ url: '/data/demos.json', onComplete: Demos.categories });
         request.get();
     },
 

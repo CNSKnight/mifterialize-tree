@@ -1,7 +1,7 @@
 var Docs = {
 
     anchorsPath: '/Docs/index.html',
-    scriptsJson: '/scripts.json',
+    scriptsJson: '/data/docs.json',
 
     start: function() {
         if (location.protocol == 'file:') Docs.local();
