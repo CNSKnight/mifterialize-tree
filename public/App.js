@@ -5,6 +5,20 @@ import Demos from './Demos/demos.js';
 import Docs from './Docs/docs.js';
 
 const navs = { Readme: null, Demos: Demos, Docs: Docs };
+const readme = document.id('readme-content');
+if (!window.Mif && !window.cmt) {
+    readme.grab(new Element('blockquote', {
+        class: 'red-text',
+        text: 'I can\'t find the CMT/Mif Tree Constructor. Demos will be disabled.'
+    }), 'top');
+
+    document.body.getElement('nav').addEvent('click:relay(a[href])', function(e) {
+        e.preventDefault();
+        if (this.get('text') == 'Demos') {
+            e.stopPropagation();
+        }
+    });
+}
 
 document.body.getElement('nav').addEvent('click:relay(a[href])', function(e) {
     e.preventDefault();
@@ -25,6 +39,7 @@ document.body.getElement('nav').addEvent('click:relay(a[href])', function(e) {
 new Request({
     url: 'README.md',
     onComplete: function(text) {
-        document.id('readme-content').set('html', Docs.showdown.makeHtml(text));
+        readme.set('html', readme.get('html') + Docs.showdown.makeHtml(text));
+        readme.getElements('ul').addClass('browser-default');
     }
 }).get();

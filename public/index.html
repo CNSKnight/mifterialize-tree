@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--link rel="shortcut icon" href="/favicon.ico"-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/public/mt-material.css" />
-    <link rel="stylesheet" type="text/css" href="/public/App.css" />
+    <link rel="stylesheet" type="text/css" href="/mifterialize.css" />
     <!--
       Notice the use of %PUBLIC_URL% in the tag above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -21,69 +20,66 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mootools/1.6.0/mootools-core.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mootools-more/1.6.0/mootools-more-compressed.js"></script>
     <style type="text/css">
+        /* App.css */
+        
+        #tree-container {
+            padding: 1em;
+        }
+        
         .demos-bloc,
         .docs-bloc {
             position: relative;
+            margin-left: 300px;
         }
         
         .side-nav.fixed {
             top: 66px;
         }
         
-        .demos-bloc {
-            margin-left: 300px;
-        }
-        
         .demos-content>div {
             margin-top: 1em;
+        }
+        
+        .card .card-content p {
+            margin: 1em 0;
+        }
+        /* nix this rule - this app not targeting smaller screens */
+        
+        @media only screen and (max-width: 992px) {
+            .side-nav.fixed {
+                -webkit-transform: unset;
+                transform: unset;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="_container">
+    <div class="row">
         <nav>
-            <div class="row">
-                <div class="nav-wrapper col s12">
-                    <a href="#" class="brand-logo">CNSKnight Mif Tree</a>
-                    <ul id="nav-mobile" class="right">
-                        <li class="active"><a href="/Readme">Readme</a></li>
-                        <li><a href="/Docs">Docs</a></li>
-                        <li><a href="/Demos">Demos</a></li>
-                    </ul>
-                </div>
+            <div class="nav-wrapper col s12">
+                <a href="#" class="brand-logo left" title="formerly Mif Tree">
+                    <span class="hide-on-small-only">CNSKnight Mifterialize Tree</span>
+                    <span class="hide-on-med-and-up">CMT</span>
+                </a>
+                <ul id="nav-mobile" class="right">
+                    <li class="active"><a href="/Readme">Readme</a></li>
+                    <li><a href="/Docs">Docs</a></li>
+                    <li><a href="/Demos">Demos</a></li>
+                </ul>
             </div>
         </nav>
     </div>
-    <div id="Readme" class="readme-bloc">
-        <main class="container">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="card-title">Mifterialize Tree Readme</span>
-                            <div id="readme-content" class="readme-content">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <div id="Demos" class="demos-bloc" style="display:none;">
-        <div class="container">
-            <header>
-                <h2>Mifterialize Tree Demos</h2>
-                <div class="side-nav fixed"></div>
-            </header>
-            <main>
+    <div class="row">
+        <div id="Readme" class="readme-bloc">
+            <main class="container">
                 <div class="row">
                     <div class="col s12">
-                        <div id="demos-wrapper" class="card">
+                        <div class="card">
                             <div class="card-content">
-                                <span class="card-title"></span>
-                                <div class="demos-content">
-                                    <p>Choose a demo from the side-nav.</p>
+                                <p class="materialize-red-text hide-on-med-and-up">Please use a wider screen to view this app</p>
+                                <span class="card-title">Mifterialize Tree Readme</span>
+                                <div id="readme-content" class="readme-content">
                                 </div>
                             </div>
                         </div>
@@ -91,30 +87,54 @@
                 </div>
             </main>
         </div>
-    </div>
-    <div id="Docs" class="docs-bloc" style="display:none;">
-        <div id="title">
-            <h2>Mifterialize Tree Docs</h2>
-        </div>
-        <div id="menu">
-            <div id="menu-wrapper"></div>
-            <span class="spc"></span>
-        </div>
-
-        <main>
-            <h5>@note [02/17] - I got these 'working' but they are the legacy v1.2.6.4 docs and will be out of date.</h5>
-            <div id="docs-wrapper"></div>
-            <div id="footer">
-                <p>Released under the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0</a> License</p>
-                <p>powered by <a href="http://daringfireball.net/projects/markdown/">markdown</a>, rendered with <a href="http://www.attacklab.net/showdown-gui.html">showdown</a>.</p>
+        <div id="Demos" class="demos-bloc" style="display:none;">
+            <div class="container">
+                <header>
+                    <h2>Mifterialize Tree Demos</h2>
+                    <div class="side-nav fixed hide-small-only"></div>
+                </header>
+                <main>
+                    <div class="row">
+                        <div class="col s12">
+                            <div id="demos-wrapper" class="card">
+                                <div class="card-content">
+                                    <span class="card-title"></span>
+                                    <div class="demos-content">
+                                        <p>Choose a demo from the side-nav.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
             </div>
-            <span class="spc"></span>
-        </main>
-    </div>
-    <script src="vendor/babel-browser-build.js"></script>
-    <script src="vendor/browser-es-module-loader.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.3/showdown.min.js"></script>
-    <script type="module" src="App.js"></script>
+        </div>
+        <div id="Docs" class="docs-bloc" style="display:none;">
+            <div class="container flow-text">
+                <header>
+                    <h2>Mifterialize Tree Docs</h2>
+                    <div class="side-nav fixed hide-on-small-only"></div>
+                </header>
+                <main>
+                    <blockquote>@note [02/17] - I got these 'working' but they are the legacy v1.2.6.4 docs and may be out of date - but they may be fine.</blockquote>
+                    <div id="docs-wrapper" class="docs-wrapper"></div>
+                    <div class="footer">
+                        <p>Released under the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0</a> License</p>
+                        <p>powered by <a href="http://daringfireball.net/projects/markdown/">markdown</a>, rendered with <a href="http://www.attacklab.net/showdown-gui.html">showdown</a>.</p>
+                    </div>
+                    <span class="spc"></span>
+                </main>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <p class="center-align materialize-red-text">CNSKnight Mifterialize Tree - formerly Mif Tree</p>
+            </div>
+        </div>
+        <script src="vendor/babel-browser-build.js"></script>
+        <script src="vendor/browser-es-module-loader.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.3/showdown.min.js"></script>
+        <script type="module" src="App.js"></script>
 </body>
 
 </html>
