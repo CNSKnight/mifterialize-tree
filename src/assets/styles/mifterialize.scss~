@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import 'svg-icons';
 
 /**
 ===============GLOBAL=================
@@ -9,7 +10,7 @@
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: 1em;
+    padding: 0;
     overflow: auto;
     font-size: 1.7rem;
     white-space: nowrap;
@@ -20,13 +21,11 @@
     span {
         display: inline-block;
         cursor: inherit;
-        vertical-align: top;
     }
     label {
         display: inline-block;
         font-size: inherit;
         color: currentColor;
-        padding-right: .5em;
     }
 }
 
@@ -112,12 +111,38 @@
     cursor: inherit;
 }
 
-@import 'svg-icons';
+.mt-open-icon {
+    background-image: url('images/openicon.gif')
+}
 
-/* or */
+.mt-close-icon {
+    background-image: url('images/closeicon.gif')
+}
 
+.mt-middle-icon {
+    background-image: url('images/middleicon.gif');
+}
 
-/* @import 'gif-icons'; */
+.mt-loader-open-icon,
+.mt-loader-close-icon {
+    background-image: url('images/mootree_loader.gif');
+}
+
+.mt-book-icon {
+    background-image: url('images/book_icon.gif');
+}
+
+.mt-bin-open-icon {
+    background-image: url('images/bin_open_icon.gif');
+}
+
+.mt-bin-close-icon {
+    background-image: url('images/bin_close_icon.gif');
+}
+
+.mt-bin-middle-icon {
+    background-image: url('images/bin_middle_icon.gif');
+}
 
 
 /**
@@ -125,13 +150,9 @@
 */
 
 .mt-node-wrapper.mt-node-selected {
-    outline: 3px dashed rgba(255, 0, 0, .7);
-    outline-offset: .2em;
+    outline: 1px dotted red;
     label {
-        font-style: italic;
-    }
-    label:hover {
-        color: rgba(255, 0, 0, .7);
+        text-transform: italic;
     }
 }
 
@@ -162,13 +183,15 @@
     border: solid 2px #e8e8f7;
     padding-left: 2px;
     position: absolute;
-    .mt-node-wrapper {
-        background: none;
-    }
-    span.mt-text {
-        padding-top: 1px;
-        padding-bottom: 1px;
-    }
+}
+
+.mt-ghost .mt-node-wrapper {
+    background: none;
+}
+
+.mt-ghost span.mt-text {
+    padding-top: 1px;
+    padding-bottom: 1px;
 }
 
 .mt-ghost-icon {
@@ -229,6 +252,14 @@
 .mt-node-partially,
 .mt-node-partially .mt-checkbox {
     @extend .check-box-indeterminate;
+}
+
+.mt-node-checked-selected {
+    background: url('images/checked_selected.gif') center 2px no-repeat;
+}
+
+.mt-node-unchecked-selected {
+    background: url('images/unchecked_selected.gif') center 2px no-repeat;
 }
 
 
