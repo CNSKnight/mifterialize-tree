@@ -7,8 +7,8 @@
 
 const Docs = {
     showdown: new window.showdown.Converter(),
-    anchorsPath: '/Docs/index.html',
-    scriptsJson: '/Docs/scripts.json',
+    anchorsPath: './Docs/index.html',
+    docsData: './data/docs.json',
 
     start: function() {
         if (location.protocol == 'file:') Docs.local();
@@ -16,7 +16,7 @@ const Docs = {
     },
 
     loadScripts: function() {
-        let r = new Request.JSON({ url: this.scriptsJson }).get();
+        let r = new Request.JSON({ url: this.docsData }).get();
         r.then(function(data) {
             Docs.categories(data.json);
         });

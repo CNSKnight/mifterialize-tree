@@ -10,6 +10,8 @@ Request.implement({
 });
 
 const Demos = {
+    demosPath: './Demos/',
+    demosData: './data/demos.json',
     start: function() {
         if (location.protocol == 'file:') Demos.local();
         Demos.getList();
@@ -45,7 +47,7 @@ const Demos = {
     },
 
     load: function(folder) {
-        var path = '/Demos/' + folder + '/';
+        var path = this.demosPath + folder + '/';
         var wrapper = $('demos-wrapper');
 
         var demo = new Request.HTML({
@@ -90,7 +92,7 @@ const Demos = {
     },
 
     getList: function() {
-        new Request.JSON({ url: '/Demos/demos.json' })
+        new Request.JSON({ url: this.demosData })
             .get().then(function(data) {
                 Demos.categories(data.json);
             });
@@ -119,7 +121,7 @@ const Demos = {
         });
 
         new Request({
-            url: '/Demos/' + folder + '/index.html',
+            url: this.demosPath + folder + '/index.html',
             onComplete: function(text) {
                 if (!text) return;
                 var body = '';
@@ -132,7 +134,7 @@ const Demos = {
             }
         }).get();
         new Request({
-            url: '/Demos/' + folder + '/demo.css',
+            url: this.demosPath + folder + '/demo.css',
             onComplete: function(text) {
                 if (!text) return;
                 informer.css.innerHTML = text;
@@ -140,7 +142,7 @@ const Demos = {
         }).get();
 
         new Request({
-            url: '/Demos/' + folder + '/demo.js',
+            url: this.demosPath + folder + '/demo.js',
             onComplete: function(text) {
                 if (!text) return;
                 informer.js.innerHTML = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
