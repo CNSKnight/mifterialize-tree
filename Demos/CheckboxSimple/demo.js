@@ -1,10 +1,10 @@
 window.addEvent('domready', function() {
-    var tree = new Mif.Tree({
+    var tree = new window.CMT.Tree({
         container: $('tree-container'),
         forest: true,
         initialize: function() {
             this.initCheckbox('simple');
-            new Mif.Tree.KeyNav(this);
+            new window.CMT.Tree.KeyNav(this);
         },
         types: {
             folder: {
@@ -38,8 +38,9 @@ window.addEvent('domready', function() {
             $('log').adopt(new Element('li').set('html', node.name + ' checked'));
         },
         onUnCheck: function(node) {
-                $('log').adopt(new Element('li').set('html', node.name + ' unchecked'));
-            }
+            $('log').adopt(new Element('li').set('html', node.name + ' unchecked'));
+        },
+        selectable: false
             //      , theme: 'legacy'
     });
 

@@ -1,5 +1,5 @@
 window.addEvent('domready', function() {
-    var tree = new Mif.Tree({
+    var tree = new window.CMT.Tree({
         container: $('tree-container'), // tree container
         types: { // node types
             folder: {
