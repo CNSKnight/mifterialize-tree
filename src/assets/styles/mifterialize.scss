@@ -36,6 +36,11 @@
     width: 18px;
 }
 
+.mt-node-wrapper {
+    margin-bottom: .2em;
+    background-color: rgb(245, 245, 245);
+}
+
 .mt-node {
     width: 18px;
     position: relative;
@@ -123,8 +128,6 @@
 */
 
 .mt-node-wrapper {
-    margin-bottom: .2em;
-    background-color: rgb(245, 245, 245);
     &.mt-node-selected {
         outline: 3px dashed rgba(255, 0, 0, .5);
         outline-offset: .05em;
@@ -153,7 +156,7 @@
     height: 1px;
     overflow: hidden;
     position: absolute;
-    background-image: url('images/1.gif');
+    background-image: url('../images/1.gif');
     background-repeat: repeat-x;
     background-color: #292fef;
 }
@@ -176,7 +179,7 @@
     padding-left: 16px;
     background-color: #fff;
     background-repeat: no-repeat;
-    background-image: url('images/dropzone.gif');
+    background-image: url('../images/dropzone.gif');
 }
 
 .mt-ghost-after {

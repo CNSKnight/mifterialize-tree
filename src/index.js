@@ -1,6 +1,9 @@
 /**
  * CNSKnight Mifterialize (Formerly Mif) Tree
  */
+// we could also be building the .scss on the fly but it got tricky to manage
+import './assets/styles/mifterialize.css';
+
 import Tree from './Core/Tree';
 
 import Trag from './More/Tree.Trag';

@@ -1,0 +1,63 @@
+/**
+* these are svg versions of material-icon's
+* https://material.io/icons/
+*/
+
+@import 'svg-uri';
+$icon-primary: 'rgb(158, 158, 158)';
+$checkbox-checked: 'rgb(76, 175, 80)';
+
+/* keyboard arrow right */
+
+.mt-material-icon {
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center center;
+}
+
+.branch-open {
+    @extend .mt-material-icon;
+    content: svg-uri('<svg fill="#{$icon-primary}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"/><path d="M0-.25h24v24H0z" fill="none"/></svg>');
+}
+
+
+/* keyboard arrow down */
+
+.branch-close {
+    @extend .mt-material-icon;
+    content: svg-uri('<svg fill="#{$icon-primary}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/> <path d="M0-.75h24v24H0z" fill="none"/></svg>');
+}
+
+
+/* check box */
+
+.check-box-checked {
+    @extend .mt-material-icon;
+    content: svg-uri('<svg fill="#{$checkbox-checked}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" /></svg>');
+}
+
+
+/* check box outline */
+
+.check-box-unchecked {
+    @extend .mt-material-icon;
+    content: svg-uri('<svg fill="#{$icon-primary}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/> <path d="M0 0h24v24H0z" fill="none"/> </svg>');
+}
+
+
+/* indeterminate check box */
+
+
+/* neighther of these are showing up in the DOM */
+
+.check-box-indeterminate {
+    @extend .mt-material-icon;
+    background-image: url('data:image/svg-xml;base64,PHN2ZyBmaWxsPSJyZ2IoMTU4LCAxNTgsIDE1OCkiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAy
+ NCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5z OnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDxkZWZzPgogICAgICAg IDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGlkPSJhIi8+CiAgICA8L2RlZnM+CiAgICA8Y2xpcFBh dGggaWQ9ImIiPgogICAgICAgIDx1c2Ugb3ZlcmZsb3c9InZpc2libGUiIHhsaW5rOmhyZWY9IiNh Ii8+CiAgICA8L2NsaXBQYXRoPgogICAgPHBhdGggY2xpcC1wYXRoPSJ1cmwoI2IpIiBkPSJNMTkg M0g1Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVj MC0xLjEtLjktMi0yLTJ6bS0yIDEwSDd2LTJoMTB2MnoiLz4KPC9zdmc+');
+
+}
+
+.check-box-indeterminate {
+    @extend .mt-material-icon;
+    content: svg-uri('<svg fill="#{$icon-primary}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M0 0h24v24H0z" id="a"/> </defs> <clipPath id="b"> <use overflow="visible" xlink: href="#a"/> </clipPath> <path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/></svg>');
+}
