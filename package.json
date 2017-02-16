@@ -1,7 +1,7 @@
 {
     "name": "mifterialize-tree",
     "version": "0.1.0",
-    "homepage": "http://CNSKnight.github.io/Mifterialize-Tree",
+    "homepage": "/Mifterialize-Tree",
     "private": false,
     "devDependencies": {
         "autoprefixer": "6.5.1",

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--link rel="shortcut icon" href="/favicon.ico"-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/mifterialize.css" />
+    <link rel="stylesheet" type="text/css" href="./mifterialize.css" />
     <!--
       Notice the use of %PUBLIC_URL% in the tag above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -43,6 +43,11 @@
         .card .card-content p {
             margin: 1em 0;
         }
+        
+        .gh-btn {
+            vertical-align: middle;
+            display: inline-block;
+        }
         /* nix this rule - this app not targeting smaller screens */
         
         @media only screen and (max-width: 992px) {
@@ -58,7 +63,7 @@
     <div class="row">
         <nav>
             <div class="nav-wrapper col s12">
-                <a href="#" class="brand-logo left" title="formerly Mif Tree">
+                <a href="/Mifterialize-Tree/Readme" class="brand-logo left" title="formerly Mif Tree">
                     <span class="hide-on-small-only">CNSKnight Mifterialize Tree</span>
                     <span class="hide-on-med-and-up">CMT</span>
                 </a>
@@ -127,14 +132,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12">
-                <p class="center-align materialize-red-text">CNSKnight Mifterialize Tree - formerly Mif Tree</p>
+            <div class="col s9 offset-s3">
+                <p class="center-align materialize-red-text">CNSKnight Mifterialize Tree - <span class="gh-btn"><a class="github-button" href="https://github.com/CNSKnight/Mifterialize-Tree" data-icon="octicon-star" data-style="mega" data-count-href="/CNSKnight/Mifterialize-Tree/stargazers" data-count-api="/repos/CNSKnight/Mifterialize-Tree#stargazers_count"
+                        data-count-aria-label="# stargazers on GitHub" aria-label="Star CNSKnight/Mifterialize-Tree on GitHub">Star</a></span> - formerly Mif Tree</p>
             </div>
         </div>
-        <script src="vendor/babel-browser-build.js"></script>
-        <script src="vendor/browser-es-module-loader.js"></script>
+        <script src="./vendor/babel-browser-build.js"></script>
+        <script src="./vendor/browser-es-module-loader.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.3/showdown.min.js"></script>
-        <script type="module" src="App.js"></script>
+        <script type="module" src="./App.js"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>
