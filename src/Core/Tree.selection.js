@@ -8,36 +8,40 @@ const targets = ['icon', 'name', 'node'];
 var treeSelection = {
     initSelection: function() {
         var tree = this;
-        tree.defaults.selectClass = '';
-        tree.wrapper.addEvent('mousedown', treeSelection.attachSelect.bind(tree));
+        tree.defaults.selectClass = ''; // idk what this is
+        tree.options.selectable &&
+            tree.wrapper.addEvent('mousedown:relay(.mt-node-wrapper *)', treeSelection.attachSelect.bind(tree));
     },
 
     attachSelect: function(e) {
         if (!!~targets.indexOf(this.mouse.target) && this.mouse.node) {
-            this.select(this.mouse.node);
+            let node = this.mouse.node;
+            if (this.selected && this.selected !== node) {
+                this.unselect(this.selected);
+                this.select(node);
+            } else if (!this.selected) {
+                this.select(node);
+            } else {
+                this.unselect(node);
+            }
         }
     },
 
     select: function(node) {
         if (!node) return this;
-        var current = this.selected;
-        if (current === node) {
-            current.select(false);
-            this.fireEvent('unSelect', [current]).fireEvent('selectChange', [current, false]);
-        } else {
-            this.selected = node;
-            node.select(true);
-            this.fireEvent('select', [node]).fireEvent('selectChange', [node, true]);
-        }
+        this.selected = node;
+        node.select(true);
+        this.fireEvent('select', [node]).fireEvent('selectChange', [node, true]);
+
         return this;
     },
 
-    unselect: function() {
-        var current = this.selected;
-        if (!current) return this;
-        this.selected = false;
-        current.select(false);
-        this.fireEvent('unSelect', [current]).fireEvent('selectChange', [current, false]);
+    unselect: function(node) {
+        if (!node) return this;
+        this.selected = null;
+        node.select(false);
+        this.fireEvent('unSelect', [node]).fireEvent('selectChange', [node, false]);
+
         return this;
     },
 

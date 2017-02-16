@@ -16,6 +16,7 @@ var init = {
         height: 18,
         expandTo: true,
         showsOpenCloseIcons: false,
+        selectable: true, // whether to enable node selection events and class changes
         theme: 'material'
     },
 
@@ -48,7 +49,7 @@ var init = {
         };
         this.$index = [];
         this.initUpdateOpenState();
-        if (this.options.expandTo) this.initExpandTo();
+        this.options.expandTo && this.initExpandTo();
         this.DOMidPrefix = 'mt-';
         this.wrapper = new Element('div').addClass('mt-wrapper').inject(this.container);
         this.events();
