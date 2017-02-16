@@ -6,7 +6,7 @@ MooTools-Powered Tree Control MaterializeCSS Style *(Formerly MifTree)*
 [https://cnsknight.github.io/Mifterialize-Tree/](https://cnsknight.github.io/Mifterialize-Tree/)
 
 #### Usage
-While the demo app is constructed with materialize-css, the only dependencies you will need to use the tree is MooTools Core and a handful of More modules.
+While the demo app is constructed with materialize-css, the only dependencies you will need to use the tree is `MooTools Core v1.6` and a handful of `MooTools More` modules.
 
 `> bower install mifterialize-tree`
 
