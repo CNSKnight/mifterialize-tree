@@ -1,5 +1,11 @@
 {
-    "name": "cnsknight-mif-tree",
-    "homepage": "https://github.com/CNSKnight/miftree",
-    "version": "0.9.01"
+    "name": "mifterialize-tree",
+    "description": "Webpack built library providing rich tree structure in the Material design style.",
+    "main": "dist/mifterialize.js",
+    "moduleType": "globals",
+    "homepage": "https://CNSKnight/github.com/Mifterialize-Tree",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CNSKnight/miftree"
+    }
 }
