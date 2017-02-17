@@ -34,10 +34,28 @@ var treeCheckbox = {
     getChecked: function(includePartially) {
         var checked = [];
         this.root.recursive(function() {
-            var condition = includePartially ? this.state.checked !== 'unchecked' : this.state.checked === 'checked';
-            if (this.hasCheckbox && condition) checked.push(this);
+            if (!this.hasCheckbox) {
+                return;
+            }
+            if (includePartially ? this.state.checked !== 'unchecked' : this.state.checked === 'checked') {
+                checked.push(this);
+            }
         });
+
         return checked;
+    },
+
+    /**
+     * provide an id property on your checkbox nodes, or the nodes UID property will be provided
+     */
+    getCheckedIds: function(includePartially) {
+        var checked = this.getChecked(includePartially);
+        var ids = [];
+        checked.each(function(el) {
+            ids.push(el.id !== undefined || el.UID);
+        });
+
+        return ids;
     }
 
 };
