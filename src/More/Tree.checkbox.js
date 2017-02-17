@@ -52,7 +52,7 @@ var treeCheckbox = {
         var checked = this.getChecked(includePartially);
         var ids = [];
         checked.each(function(el) {
-            ids.push(el.id !== undefined || el.UID);
+            ids.push(el.id !== undefined ? el.id : el.UID);
         });
 
         return ids;
