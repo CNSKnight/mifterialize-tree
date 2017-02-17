@@ -6,8 +6,6 @@
 
 .mt-wrapper {
     position: relative;
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 1em;
     overflow: auto;
@@ -33,7 +31,6 @@
 .mt-children {
     display: none;
     margin-left: 1.5em;
-    width: 18px;
 }
 
 .mt-node-wrapper {
@@ -41,10 +38,7 @@
     background-color: rgb(245, 245, 245);
 }
 
-.mt-node {
-    width: 18px;
-    position: relative;
-}
+.mt-node {}
 
 .mt-node-last {}
 
@@ -115,6 +109,9 @@
     cursor: inherit;
 }
 
+
+/* careful! screwed up icon rules can bonk other rules down the cascade */
+
 @import 'svg-icons';
 
 /* or */
@@ -145,6 +142,46 @@
         background: #b64553;
         position: absolute;
     }
+}
+
+
+/**
+================CHECKBOX=================
+*/
+
+.mt-checkbox {
+    display: inline-block;
+    width: 1.5em;
+    margin-right: .5em;
+}
+
+.mt-node-checked,
+.mt-node-checked .mt-checkbox {
+    @extend .check-box-checked;
+}
+
+.mt-node-unchecked,
+.mt-node-unchecked .mt-checkbox {
+    @extend .check-box-unchecked;
+}
+
+.mt-node-partially,
+.mt-node-partially .mt-checkbox {
+    @extend .check-box-indeterminate;
+}
+
+
+/**
+===============RENAME=================
+*/
+
+.mt-rename {
+    display: inline;
+    cursor: default;
+    overflow: hidden;
+    font-family: sans-serif;
+    padding: 1px 0;
+    border: solid 1px black;
 }
 
 
@@ -208,43 +245,4 @@
 
 .mt-replace {
     background-color: #99c8fb;
-}
-
-
-/**
-================CHECKBOX=================
-*/
-
-.mt-checkbox {
-    width: 1.5em;
-    margin-right: .5em;
-}
-
-.mt-node-checked,
-.mt-node-checked .mt-checkbox {
-    @extend .check-box-checked;
-}
-
-.mt-node-unchecked,
-.mt-node-unchecked .mt-checkbox {
-    @extend .check-box-unchecked;
-}
-
-.mt-node-partially,
-.mt-node-partially .mt-checkbox {
-    @extend .check-box-indeterminate;
-}
-
-
-/**
-===============RENAME=================
-*/
-
-.mt-rename {
-    display: inline;
-    cursor: default;
-    overflow: hidden;
-    font-family: sans-serif;
-    padding: 1px 0;
-    border: solid 1px black;
 }

@@ -6,6 +6,7 @@
 @import 'svg-uri';
 $icon-primary: 'rgb(158, 158, 158)';
 $checkbox-checked: 'rgb(76, 175, 80)';
+$checkbox-indeterm: 'rgb(196, 225, 172)';
 
 /* keyboard arrow right */
 
@@ -47,17 +48,7 @@ $checkbox-checked: 'rgb(76, 175, 80)';
 
 /* indeterminate check box */
 
-
-/* neighther of these are showing up in the DOM */
-
 .check-box-indeterminate {
     @extend .mt-material-icon;
-    background-image: url('data:image/svg-xml;base64,PHN2ZyBmaWxsPSJyZ2IoMTU4LCAxNTgsIDE1OCkiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAy
- NCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5z OnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDxkZWZzPgogICAgICAg IDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGlkPSJhIi8+CiAgICA8L2RlZnM+CiAgICA8Y2xpcFBh dGggaWQ9ImIiPgogICAgICAgIDx1c2Ugb3ZlcmZsb3c9InZpc2libGUiIHhsaW5rOmhyZWY9IiNh Ii8+CiAgICA8L2NsaXBQYXRoPgogICAgPHBhdGggY2xpcC1wYXRoPSJ1cmwoI2IpIiBkPSJNMTkg M0g1Yy0xLjEgMC0yIC45LTIgMnYxNGMwIDEuMS45IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVj MC0xLjEtLjktMi0yLTJ6bS0yIDEwSDd2LTJoMTB2MnoiLz4KPC9zdmc+');
-
-}
-
-.check-box-indeterminate {
-    @extend .mt-material-icon;
-    content: svg-uri('<svg fill="#{$icon-primary}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M0 0h24v24H0z" id="a"/> </defs> <clipPath id="b"> <use overflow="visible" xlink: href="#a"/> </clipPath> <path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/></svg>');
+    content: svg-uri('<svg fill="#{$checkbox-indeterm}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M0 0h24v24H0z" id="a"/></defs><clipPath id="b"><use overflow="visible" xlink:href="#a"/></clipPath><path clip-path="url(#b)" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"/></svg>');
 }
