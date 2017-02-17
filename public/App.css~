@@ -1,0 +1,38 @@
+/* App.css */
+
+#tree-container {
+    padding: 1em;
+}
+
+.demos-bloc,
+.docs-bloc {
+    position: relative;
+    margin-left: 300px;
+}
+
+.side-nav.fixed {
+    top: 66px;
+}
+
+.demos-content>div {
+    margin-top: 1em;
+}
+
+.card .card-content p {
+    margin: 1em 0;
+}
+
+.gh-btn {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+
+/* nix this rule - this app not targeting smaller screens */
+
+@media only screen and (max-width: 992px) {
+    .side-nav.fixed {
+        -webkit-transform: unset;
+        transform: unset;
+    }
+}

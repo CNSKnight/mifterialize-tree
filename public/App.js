@@ -1,6 +1,7 @@
 /**
- * 
+ * App.js
  */
+import './App.css';
 import Demos from './Demos/demos.js';
 import Docs from './Docs/docs.js';
 
