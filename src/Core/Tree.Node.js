@@ -54,7 +54,16 @@ var Node = new Class({
     },
 
     getGadjetType: function() {
-        return (this.loadable && !this.isLoaded()) ? 'plus' : (this.hasVisibleChildren() ? (this.isOpen() ? 'minus' : 'plus') : 'none');
+
+        if (this.loadable && !this.isLoaded()) {
+            return 'plus'
+        }
+
+        if (this.hasVisibleChildren()) {
+            return (this.isOpen() ? 'minus' : 'plus');
+        }
+
+        return 'none';
     },
 
     toggle: function(state) {
@@ -321,7 +330,10 @@ var Node = new Class({
     },
 
     updateOpenState: function() {
-        this.state.open && (this.state.open = false && this.toggle());
+        if (this.state.open) {
+            this.state.open = false;
+            this.toggle();
+        }
     },
 
     load: function(options) {

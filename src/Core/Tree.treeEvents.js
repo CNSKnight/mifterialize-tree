@@ -224,15 +224,14 @@ var treeEvents = {
     },
 
     initExpandTo: function() {
-        this.addEvent('loadChildren',
-            parent => {
-                if (!parent) return;
-                var children = parent.children;
-                for (var i = children.length; i--;) {
-                    var child = children[i];
-                    if (child.expandTo) this.expanded.push(child);
-                }
-            });
+        this.addEvent('loadChildren', parent => {
+            if (!parent) return;
+            var children = parent.children;
+            for (var i = children.length; i--;) {
+                var child = children[i];
+                if (child.expandTo) this.expanded.push(child);
+            }
+        });
 
         function expand() {
             this.expanded.each(function(node) {
