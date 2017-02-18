@@ -19,30 +19,30 @@ MIf.Tree.Node Method: constructor {#Mif.Tree.Node:constructor}
 
 ### Options:
 
-* property         - (*object*) node attributes.
-* data        - (*boolean*) user data object.
++ **property**        - (*object*) node attributes.
++ **data**       - (*boolean*) user data object.
 
 ### Properties:
 
 **property**
 
-* name        - node name.  
-* openIcon    - css class for open icon.
-* closeIcon   - css class for close icon.
-* openIconUrl - url for open icon
-* closeIconUrl- url for close icon
-* cls         - extra css class addes to node wrapper. See also html node structure in Mif.Tree.Draw.
-* loadable    - Load nodes on expand using Mif.Tree.Node load method if node.state.loaded=false.
-* id          - id. If id exists, we can get node using Mif.id(node_id) function.
++ **name**       - node name.  
++ **openIcon**   - css class for open icon.
++ **closeIcon**  - css class for close icon.
++ **openIconUrl**- url for open icon
++ **closeIconUrl-**url for close icon
++ **cls**        - extra css class addes to node wrapper. See also html node structure in Mif.Tree.Draw.
++ **loadable**   - Load nodes on expand using Mif.Tree.Node load method if node.state.loaded=false.
++ **id**         - id. If id exists, we can get node using Mif.id(node_id) function.
 
 **state**
 
-* state     - node state object: {open:*boolean*, loaded:*boolean*}
++ **state**    - node state object: {open:*boolean*, loaded:*boolean*}
 
 **structure**
 
-* parentNode - parent node
-* tree       - node tree control
++ **parentNode**- parent node
++ **tree**      - node tree control
 
 
 
@@ -70,7 +70,7 @@ return node dom structure element. See also Mif.Tree.Draw.
 
 ### Returns:
 
-* (*element*) dom element.
++ (*element*) dom element.
 
 ### Example:
 	
@@ -92,7 +92,7 @@ By default toggles the node between expanded/collapsed.
 
 ### Returns:
 
-* (*Mif.Tree.Node*) toggled node.
++ (*Mif.Tree.Node*) toggled node.
 
 ### Example:
 	
@@ -130,7 +130,7 @@ return true if node opened, else false.
 	
 ### Returns:
 	
-* (*boolean*) true if this is open node, either false.
++ (*boolean*) true if this is open node, either false.
 
 ### Example:
 	
@@ -147,7 +147,7 @@ Return true if node were loaded.
 	
 ### Returns:
 
-* (*boolean*) true if this is loaded node, either false.
++ (*boolean*) true if this is loaded node, either false.
 
 ### Example:
 	

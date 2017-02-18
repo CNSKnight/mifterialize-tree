@@ -18,21 +18,23 @@ Mif.Tree Method: constructor {#Mif.Tree:constructor}
 
 ### Options:
 
-* types         - (*object*) node types. Object with keys - type names and values - type properties. Properties will be added as default properties for all nodes of this type. Properties is the Mif.Tree.Node properties. See Mif.Tree.Node properties for more info.
-* dfltType      - (*string*) default type.
-* forest        - (*boolean*: defaults to false) if true tree don't have root node.
-* animateScroll - (*boolean*: defaults to true) animate scrollTo function.
-* height        - tree node height.
-* expandTo      - (*boolean*: defaults to true) if true loaded nodes with expandTo property set to true will be shown using expandTo function.
++ **types**        - (*object*) node types. Object with keys - type names and values - type properties. Properties will be added as default properties for all nodes of this type. Properties is the Mif.Tree.Node properties. See Mif.Tree.Node properties for more info.
++ **dfltType**      - (*string*) default type.
++ **forest**        - (*boolean*: defaults to false) if true tree don't have root node.
++ **animateScroll** - (*boolean*: defaults to true) animate scrollTo function.
++ **height**        - tree node height.
++ **expandTo**      - (*boolean*: defaults to true) if true loaded nodes with expandTo property set to true will be shown using expandTo 
+function.
++ **selectable**    - (*boolean*): defaults to true) whether to enable selectable events and Element class assignments
 
 ### Events:
 
-* toggle(node, state) - Function to execute when expand or collapse node. On expand state=true, on collapse state=false
-* nodeCreate(node)    - Function to execute after new node initialize.
++ **toggle(node, state)** - Function to execute when expand or collapse node. On expand state=true, on collapse state=false
++ **nodeCreate(node)**   - Function to execute after new node initialize.
 
 ### Properties:
 
-* UID - tree control unique identifier.
++ **UID**- tree control unique identifier.
 
 ### Example:
 
