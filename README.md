@@ -27,13 +27,16 @@ Fork the repo, then
 > npm start (or npm run build)
 ```
 
+Note that running `> npm run build` will give you a */build* directory.
+I've shipped mifterialize-tree with a pre-built */dist* directory for your convenience.
+
 #### Customize
 
 It's all SASS
 ```
 > npm install -g node-sass
-> cd src/assets/
-> node-sass mifterialize.scss ../../public/mifterialize.css
+> cd src/assets/styles
+> node-sass mifterialize.scss mifterialize.css (-w)
 ```
 
 The package includes all of the feature modules and css (no more image icons);

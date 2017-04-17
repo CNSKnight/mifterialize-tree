@@ -196,3 +196,22 @@
 
 .mt-replace {
   background-color: #99c8fb; }
+
+/* Bootstrap Flavoured Overrides */
+.BSF .mt-node label.mt-name,
+[data-flavour="BS"] .mt-node label.mt-name {
+  line-height: 1.5em;
+  font-weight: normal;
+  font-size: 2.2rem;
+  margin-bottom: 0; }
+
+.BSF .mt-gadjet,
+.BSF .mt-checkbox,
+[data-flavour="BS"] .mt-gadjet,
+[data-flavour="BS"] .mt-checkbox {
+  width: 1.5em; }
+
+/* Horizontal Collapse */
+.mt-wrapper.collapse .mt-node span.mt-node-nochecked,
+.mt-wrapper.collapse .mt-node span.mt-gadjet-none {
+  display: none; }
