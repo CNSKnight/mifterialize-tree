@@ -246,3 +246,32 @@
 .mt-replace {
     background-color: #99c8fb;
 }
+
+
+/* Bootstrap Flavoured Overrides */
+
+.BSF,
+[data-flavour="BS"] {
+    .mt-node {
+        label.mt-name {
+            line-height: 1.5em;
+            font-weight: normal;
+            font-size: 2.2rem;
+            margin-bottom: 0;
+        }
+    }
+    .mt-gadjet,
+    .mt-checkbox {
+        width: 1.5em;
+    }
+}
+
+
+/* Horizontal Collapse */
+
+.mt-wrapper.collapse {
+    .mt-node span.mt-node-nochecked,
+    .mt-node span.mt-gadjet-none {
+        display: none;
+    }
+}
