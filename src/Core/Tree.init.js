@@ -52,6 +52,7 @@ var init = {
         this.options.expandTo && this.initExpandTo();
         this.DOMidPrefix = 'mt-';
         this.wrapper = new Element('div').addClass('mt-wrapper').inject(this.container);
+        this.options.horizontalCollapse && this.wrapper.addClass('collapse');
         this.events();
         this.initScroll();
         this.initSelection();
