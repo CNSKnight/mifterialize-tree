@@ -87,8 +87,9 @@
     },
     "eslintConfig": {
         "extends": "react-app",
-        "parse": "expree",
+        "parser": "espree",
         "eqeqeq": [
+            "warn",
             "smart"
         ],
         "globals": {

@@ -1,6 +1,9 @@
 /**
 ===============GLOBAL=================
 */
+.test {
+  outline: red; }
+
 .mt-wrapper {
   position: relative;
   margin: 0;
@@ -212,6 +215,8 @@
   width: 1.5em; }
 
 /* Horizontal Collapse */
-.mt-wrapper.collapse .mt-node span.mt-node-nochecked,
-.mt-wrapper.collapse .mt-node span.mt-gadjet-none {
-  display: none; }
+.mt-wrapper.collapse {
+  display: block; }
+  .mt-wrapper.collapse .mt-node span.mt-node-nochecked,
+  .mt-wrapper.collapse .mt-node span.mt-gadjet-none {
+    display: none; }
