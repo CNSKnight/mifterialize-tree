@@ -8,13 +8,15 @@ import treeEvents from './Tree.treeEvents';
 import hover from './Tree.hover';
 import { treeSelection } from './Tree.selection';
 import { treeCheckbox } from '../More/Tree.checkbox';
+import { treeTransform } from '../More/Tree.transforms';
+
 // import patch  from './Tree.mootools-patch'; // this should not be needed going forward
 
 var Tree = new Class(
     Object.assign({
-        version: '0.9.02',
+        version: '0.9.03',
         Implements: [Events, Options]
-    }, init, treeEvents, hover, treeSelection, treeCheckbox)
+    }, init, treeEvents, hover, treeSelection, treeCheckbox, treeTransform)
 );
 
 Tree.UID = 0;

@@ -10,20 +10,28 @@ var treeSelection = {
         var tree = this;
         tree.defaults.selectClass = ''; // idk what this is
         tree.options.selectable &&
-            tree.wrapper.addEvent('mousedown:relay(.mt-node-wrapper *)', treeSelection.attachSelect.bind(tree));
+            tree.wrapper.addEvents({
+                'mousedown:relay(.mt-node-wrapper *)': treeSelection.attachSelect.bind(tree),
+                'mousedown:relay(:not(.mt-node-wrapper *))': (e) => {
+                    e.stop();
+                    tree.unselect();
+                }
+            });
     },
 
     attachSelect: function(e) {
-        if (!!~targets.indexOf(this.mouse.target) && this.mouse.node) {
-            let node = this.mouse.node;
-            if (this.selected && this.selected !== node) {
-                this.unselect(this.selected);
-                this.select(node);
-            } else if (!this.selected) {
-                this.select(node);
-            } else {
-                this.unselect(node);
-            }
+        e.stop();
+        let node = this.mouse.node;
+        if (!node || !!!~targets.indexOf(this.mouse.target)) {
+            return;
+        }
+
+        if (this.selected && this.selected !== node) {
+            this.unselect().select(node);
+        } else if (!this.selected) {
+            this.select(node);
+        } else {
+            this.unselect(node);
         }
     },
 
@@ -37,11 +45,11 @@ var treeSelection = {
     },
 
     unselect: function(node) {
-        if (!node) return this;
+        let target = node || this.selected;
+        if (!target) return this;
         this.selected = null;
-        node.select(false);
-        this.fireEvent('unSelect', [node]).fireEvent('selectChange', [node, false]);
-
+        target.select(false);
+        this.fireEvent('unSelect', [target]).fireEvent('selectChange', [target, false]);
         return this;
     },
 

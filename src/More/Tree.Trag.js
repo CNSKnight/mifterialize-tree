@@ -5,12 +5,15 @@ import Node from '../Core/Tree.Node';
 import Draw from '../Core/Tree.draw';
 import TragElement from './Tree.TragElement';
 
+const $ = window.document.id;
+
 var Trag = new Class({
     Implements: [Events, Options],
     Extends: Drag,
 
     options: {
         group: 'tree',
+        // areas which 
         droppables: [],
         snap: 4,
         animate: true,
@@ -142,7 +145,7 @@ var Trag = new Class({
         if (dropZone) {
             dropZone.where = 'notAllowed';
             Trag.ghost.firstChild.className = 'mt-ghost-icon mt-ghost-' + dropZone.where;
-            if (dropZone.onleave) dropZone.onleave();
+            dropZone.onleave && dropZone.onleave();
             Trag.dropZone = false;
         }
 
@@ -173,10 +176,10 @@ var Trag = new Class({
 
     getZone: function(target) { //private leave/enter
         if (!target) return false;
-        var parent = $(target);
+        let parent = $(target);
         do {
             for (var l = this.droppables.length; l--;) {
-                var zone = this.droppables[l];
+                let zone = this.droppables[l];
                 if (parent === zone.getElement()) {
                     return zone;
                 }
@@ -215,7 +218,7 @@ var Trag = new Class({
                     y = this.y;
                     delta = (sign === 1 ? (y - wrapper.scrollTop) : (wrapper.offsetHeight - y + wrapper.scrollTop)) || 1;
                 }
-                wrapper.scrollTop = wrapper.scrollTop - sign * this.options.scrollSpeed / delta;
+                wrapper.scrollTop -= (sign * this.options.scrollSpeed / delta);
             }.periodical(this.options.scrollDelay, this, [sign]);
         }
         if (!sign) {
@@ -244,7 +247,7 @@ var Trag = new Class({
     },
 
     drag: function(event) {
-        Trag.ghost.position({ x: event.page.x + 20, y: event.page.y + 20 });
+        Trag.ghost.position({ x: event.page.x + 30, y: event.page.y + 20 });
         var dropZone = Trag.dropZone;
         if (!dropZone || !dropZone.ondrag) return;
         Trag.dropZone.ondrag(event);
@@ -287,7 +290,7 @@ var Trag = new Class({
     },
 
     clean: function() {
-        this.pointer.style.width = 0;
+        this.pointer.setStyle('width', 0);
         if (this.openTimer) {
             clearTimeout(this.openTimer);
             this.openTimer = false;
@@ -407,15 +410,15 @@ var Trag = new Class({
     },
 
     drop: function() {
-        var current = this.current,
+        let current = this.current,
             target = this.target,
             where = this.where;
         Trag.ghost.dispose();
-        var action = this.action || (this.tree.key[this.options.modifier] ? 'copy' : 'move');
+        let action = this.action || (this.tree.key[this.options.modifier] ? 'copy' : 'move');
         if (this.where === 'inside' && target.tree && !target.isOpen()) {
             if (target.tree) target.toggle();
             if (target.$loading) {
-                var onLoad = function() {
+                let onLoad = () => {
                     this.tree[action](current, target, where);
                     this.tree.select(current).scrollTo(current);
                     this.fireEvent('drop', [current, target, where]);
@@ -429,7 +432,7 @@ var Trag = new Class({
             current = current.toNode(this.tree);
         }
         this.tree[action](current, target, where);
-        this.tree.select(current).scrollTo(current);
+        this.tree.unselect().select(current).scrollTo(current);
         this.fireEvent('drop', [current, target, where]);
     },
 

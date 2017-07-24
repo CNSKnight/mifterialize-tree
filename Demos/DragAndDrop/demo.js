@@ -1,10 +1,10 @@
 window.addEvent('domready', function() {
-    var tree = new Mif.Tree({
+    var tree = new CMT.Tree({
         container: $('tree-container'),
         forest: true,
         initialize: function() {
-            new Mif.Tree.KeyNav(this);
-            new Mif.Tree.Drag(this, {
+            new CMT.Tree.KeyNav(this);
+            new CMT.Tree.Drag(this, {
                 onDrag: function() {
                     //inject book inside book not allowed;
                     if (this.target && this.target.type == 'book' && this.current.type == 'book' && this.where == 'inside') {
@@ -79,11 +79,11 @@ window.addEvent('domready', function() {
         };
     }
 
-    tree2 = new Mif.Tree({
+    tree2 = new CMT.Tree({
         container: $('tree-container2'),
         initialize: function() {
-            new Mif.Tree.KeyNav(this);
-            new Mif.Tree.Drag(this, {
+            new CMT.Tree.KeyNav(this);
+            new CMT.Tree.Drag(this, {
                 onDrag: function() {
                     $('destination').innerHTML = this.target ? this.target.name : '';
                     $('where').innerHTML = this.where;

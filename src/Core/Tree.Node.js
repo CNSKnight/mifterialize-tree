@@ -294,25 +294,31 @@ var Node = new Class({
             return this;
         }
         if (!draw.isUpdatable(this)) return this;
+
+        var target;
         switch (p) {
             case 'name':
-                this.getDOM('name').set('html', nv);
+                target = this.getDOM('name')
+                target && target.set('html', nv);
                 return this;
             case 'cls':
-                this.getDOM('wrapper').removeClass(cv).addClass(nv);
+                target = this.getDOM('wrapper');
+                target && target.removeClass(cv).addClass(nv);
                 return this;
             case 'openIcon':
             case 'closeIcon':
-                this.getDOM('icon').removeClass(cv).addClass(nv);
+                target = this.getDOM('icon')
+                target && target.removeClass(cv).addClass(nv);
                 return this;
             case 'openIconUrl':
             case 'closeIconUrl':
-                var icon = this.getDOM('icon');
-                icon.setStyle('background-image', 'none');
-                if (nv) icon.setStyle('background-image', 'url(' + nv + ')');
+                target = this.getDOM('icon');
+                target && target.setStyle('background-image', 'none');
+                nv && target && target.setStyle('background-image', 'url(' + nv + ')');
                 return this;
             case 'hidden':
-                this.getDOM('node').setStyle('display', nv ? 'none' : 'block');
+                target = this.getDOM('node');
+                target && target.setStyle('display', nv ? 'none' : 'block');
                 var _previous = this.getPreviousVisible();
                 var _next = this.getNextVisible();
                 var parent = this.getParent();
