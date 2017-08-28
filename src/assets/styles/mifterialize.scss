@@ -72,10 +72,16 @@
 
 .mt-gadjet-minus {
     @extend .branch-close;
+    &.hasChecked {
+        @extend .branch-close-hasChecked;
+    }
 }
 
 .mt-gadjet-plus {
     @extend .branch-open;
+    &.hasChecked {
+        @extend .branch-open-hasChecked;
+    }
 }
 
 .mt-gadjet-middle {

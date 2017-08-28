@@ -101,7 +101,7 @@
 * https://material.io/icons/
 */
 /* keyboard arrow right */
-.mt-material-icon, .branch-open, .mt-gadjet-plus, .branch-close, .mt-gadjet-minus, .check-box-checked, .mt-node-checked,
+.mt-material-icon, .branch-open, .mt-gadjet-plus, .branch-open-hasChecked, .mt-gadjet-plus.hasChecked, .branch-close, .mt-gadjet-minus, .branch-close-hasChecked, .mt-gadjet-minus.hasChecked, .check-box-checked, .mt-node-checked,
 .mt-node-checked .mt-checkbox, .check-box-unchecked, .mt-node-unchecked,
 .mt-node-unchecked .mt-checkbox, .check-box-indeterminate, .mt-node-partially,
 .mt-node-partially .mt-checkbox {
@@ -114,9 +114,17 @@
   content: url("data:image/svg+xml;charset=utf8,%3Csvg fill='rgb(158, 158, 158)' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z'/%3E%3Cpath d='M0-.25h24v24H0z' fill='none'/%3E%3C/svg%3E");
 }
 
+.branch-open-hasChecked, .mt-gadjet-plus.hasChecked {
+  content: url("data:image/svg+xml;charset=utf8,%3Csvg fill='rgb(76, 175, 80)' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z'/%3E%3Cpath d='M0-.25h24v24H0z' fill='none'/%3E%3C/svg%3E");
+}
+
 /* keyboard arrow down */
 .branch-close, .mt-gadjet-minus {
   content: url("data:image/svg+xml;charset=utf8,%3Csvg fill='rgb(158, 158, 158)' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/%3E %3Cpath d='M0-.75h24v24H0z' fill='none'/%3E%3C/svg%3E");
+}
+
+.branch-close-hasChecked, .mt-gadjet-minus.hasChecked {
+  content: url("data:image/svg+xml;charset=utf8,%3Csvg fill='rgb(76, 175, 80)' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/%3E %3Cpath d='M0-.75h24v24H0z' fill='none'/%3E%3C/svg%3E");
 }
 
 /* check box */
@@ -285,5 +293,4 @@
 }
  
 
-
-  /*# sourceMappingURL=mifterialize.css.map */
+ /*# sourceMappingURL= mifterialize.css.map */
